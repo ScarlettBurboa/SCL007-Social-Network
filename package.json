@@ -1,0 +1,22 @@
+{
+  "name": "scl007-social-network",
+  "version": "0.0.1",
+  "description": "Proyecto de Red social",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ScarlettBurboa/SCL007-Social-Network.git"
+  },
+  "author": "Scarlett Burboa, Jenifer Parra, Olga Perez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ScarlettBurboa/SCL007-Social-Network/issues"
+  },
+  "homepage": "https://github.com/ScarlettBurboa/SCL007-Social-Network#readme",
+  "devDependencies": {
+    "chai": "^4.2.0"
+  }
+}
