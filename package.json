@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/ScarlettBurboa/SCL007-Social-Network#readme",
   "devDependencies": {
-    "chai": "^4.2.0"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "chai": "^4.2.0",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
   }
 }
