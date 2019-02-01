@@ -1,26 +1,31 @@
 {
-  "name": "scl007-social-network",
+  "name": "2019-tallercomenzarproyecto",
   "version": "0.0.1",
-  "description": "Proyecto de Red social",
+  "description": "Este es un taller de como comenzar proyectos de front-end.",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest --coverage"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ScarlettBurboa/SCL007-Social-Network.git"
-  },
-  "author": "Scarlett Burboa, Jenifer Parra, Olga Perez",
+  "author": "Fabián Alexis Bravo Abarca",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ScarlettBurboa/SCL007-Social-Network/issues"
-  },
-  "homepage": "https://github.com/ScarlettBurboa/SCL007-Social-Network#readme",
   "devDependencies": {
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-jest": "^24.0.0",
     "chai": "^4.2.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0"
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.0.0",
+    "jest-cli": "*"
+  },
+  "jest": {
+    "transform": {
+      ".*": "<rootDir>/node_modules/babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
   }
 }
