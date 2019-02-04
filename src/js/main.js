@@ -1,21 +1,34 @@
-import {checkAuthState, registerUser} from '../auth/auth.js';
+import {checkAuthState, registerUser,gmailLogIn, signOut} from '../js/auth.js';
 
-window.onload = () => {
-  checkAuthState((user)=>{
-    if(user){
-      loginOrRegister.style.display = "none";
-      app.style.display = "block";
-    }else{
-      loginOrRegister.style.display = "block";
-      app.style.display = "none";
-    }
-  });
+window.onload = () =>{
+//  btnLogout.style.display = "none";
+     checkAuthState((user) => {
+        if (user){
+            loginRegister.style.display ="none";
+            app.style.display = "block";
+        }else{
+           loginRegister.style.display ="block";
+           app.style.display = "none";
+        }
+    });
+}
+//Registrar usuario (email y contraseña)
+const registerWithEmailAndPassword =()=>{
+
+    const emailUser = textEmail.value;
+    const passwordUser = password.value;
+    registerUser(emailUser, passwordUser); 
 };
-
-const registerWithEmailAndPassword = () => {
-  const emailFromUser = emailTextfield.value;
-  const passwordFromUser = passwordTextfield.value;
-  registerUser(emailFromUser, passwordFromUser);
-};
-
-registerButton.addEventListener('click', registerWithEmailAndPassword);
+btnSignUp.addEventListener('click', registerWithEmailAndPassword);
+//Iniciar sesión con Google
+const logInGoogle =()=>{
+  //alert("hola")
+  gmailLogIn()
+}
+btnGmail.addEventListener('click', logInGoogle);
+//Cerrar sesión
+const logOut =() =>{
+ //console.log("Ud cerro sesión")
+  signOut()
+}
+btnLogout.addEventListener('click', logOut);
