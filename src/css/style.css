@@ -1,0 +1,72 @@
+.logo{
+    margin: 0 auto;
+    display:block;
+}
+.form{
+    margin: 0 auto;
+    display: block !important;
+    width: 100%;
+    max-width: 350px;
+}
+.input-info, .formSignBtn{
+    background-color: #c4c4c4;
+    -webkit-border-radius: 20px;
+    -moz-border-radius:20px;
+    border-radius:20px;
+    color: #000;
+    width:100%;
+    max-width: 350px;
+    padding: 10px 15px;
+    margin: 13px 0;
+    border: 1px #898989 solid;
+    font-size: 15px;
+}
+.input-info::placeholder{
+    color:#898989;
+}
+.registro-text{
+    text-align:center;
+    width: 100%;
+    margin: 15px auto;
+}
+.formSignBtn{
+     background-color: #1AA9E2;
+     color: #fff;
+    }
+.logos-rrss {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+.logos-rrss a {
+    font-size: 25px;
+    color: azure;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 5px;
+    text-decoration: none;
+}
+.logos-rrss a:hover{
+    opacity: 0.6;
+    text-decoration: none;
+    transition: 0.4s;
+}
+.azul-facebook{
+    background-color: #3b5998;
+}
+.celeste-twitter{
+    background-color: #1da1f2;
+}
+.rojo-googlemas{
+    background-color: #ea4335;
+}
+.otra-cuenta{
+    text-align: center;
+}
+.box-registro{
+    margin-top:7%;
+}
