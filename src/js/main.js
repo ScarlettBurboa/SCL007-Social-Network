@@ -1,4 +1,4 @@
-import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail} from '../js/auth.js';
+import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn} from '../js/auth.js';
 window.onload = () =>{     
      checkAuthState((user) => {
         if(user){
@@ -19,6 +19,7 @@ const registerWithEmailAndPassword =()=>{
     registerUser(emailUser, passwordUser); 
 };
 document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
+
 //Iniciar Sesión correo y contraseña
 const signInWithEmailAndPassword = ()=>{
     const emailUser = textEmail.value;
@@ -26,6 +27,7 @@ const signInWithEmailAndPassword = ()=>{
     loginUserWithEmail(emailUser, passwordUser);  
 };
 document.getElementById('btnLogin').addEventListener('click', signInWithEmailAndPassword);
+
 //Iniciar sesión con Google
 const logInGoogle =()=>{
   //alert("hola")
@@ -38,3 +40,11 @@ const logOut =() =>{
   signOut()
 }
 document.getElementById('btnLogout').addEventListener('click', logOut);
+
+//Iniciar sesión con Facebook
+const logInFacebook = () => {
+
+    facebookLogIn()
+}
+
+document.getElementById('btnFacebook').addEventListener('click', logInFacebook); 
