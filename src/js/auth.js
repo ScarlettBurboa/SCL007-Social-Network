@@ -17,7 +17,7 @@ export const registerUser = (email,password) =>{
        console.log("usuario >" + JSON.stringify(firebaseUser.userid) )
    })
    .catch(error =>console.log(error.message))
-   document.getElementById('error-m').innerHTML=`${error.message}`;
+  // document.getElementById('error-m').innerHTML=`${error.message}`;
 
    };
    
@@ -51,14 +51,3 @@ export const gmailLogIn = ()=>{
 
 };
 
-// clase fabian
-
-export const loginUser = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((user)=>{
-        console.log("Usuario logueado > "+JSON.stringify(user));
-      })
-      .catch((error) => {
-        console.error("Error > "+error.message);
-      });
-  }
