@@ -6,9 +6,9 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <link rel="stylesheet" href="./css/grid.css">
       <link rel="stylesheet" href="./css/style.css">
-      <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
-      <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>
       <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.css" />
+      <script src="https://cdn.firebase.com/libs/firebaseui/3.1.1/firebaseui.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/5.8.1/firebase.js"></script>     
       <link href="./assets/faviconorientados.png" rel="icon" type="image/png" />
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
       <link href="https://fonts.googleapis.com/css?family=Assistant:300,400,600,700,800" rel="stylesheet">
@@ -17,14 +17,15 @@
    <body>
       <main class="box-registro">
          <div class="container">
-            <div class="row">
+            <div class="row" id="loginRegister">
                <div class="col-12">
-                  <div class="form" id="loginRegister">
+                  <div class="form">
                      <form  action="javascript.void(0)"></form>
                      <img class="logo" src="./assets/logoOrientados.png" alt="Orienta2">
                      <h3 class="registro-text">Inicia Sesión o Regístrate</h3>
-                     <input class="input-info" type= "email" id="textEmail" placeholder="Correo">
+                     <input class="input-info" type= "email" id="textEmail" placeholder="Correo Electrónico">
                      <input class="input-info"type= "password" id="password" placeholder="Contraseña">
+                     <div class="error" id="error-m"></div>
                         <button class="formSignBtn" id="btnLogin">Inicia Sesión</button>
                         <button class="formSignBtn" id="btnSignUp"> Registrate</button>
                      <h4 class="otra-cuenta">Inicia sesión con otra cuenta</h4>
@@ -35,10 +36,37 @@
                              <a class="rojo-googlemas" id ="btnGmail" href="#"><i class="fab fa-google"></i></a>
                            </div>
                          </div>
-                  </div>
-                  <button id="btnLogout"> Cerrar Sesión</button>
+                       
+                  </div>                  
                </div>
             </div>
+            <div class="row">
+               <div class="col-12"  id="app">
+                     <button id="btnLogout"> Cerrar Sesión</button>
+                 <div class="col-2">
+                   <img src="./assets/user11.png" alt="">
+                 </div>   
+                 <div class="col-9">
+                  <div class="question">
+                     <input class="answer" type="text" placeholder="¿Qué quieres preguntar?">
+                  </div>
+                 </div> 
+                 <div class="col-2">
+                     <img src="./assets/user10.png" alt="">
+                   </div>   
+                   <div class="col-9">
+                     <p id="post">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sagittis tempor mollis. Maecenas convallis enim vel tortor ullamcorper, at bibendum nunc vulputate. Nam vulputate, nisi vel imperdiet convallis, urna massa blandit risus, sit amet faucibus sapien magna quis justo.</p>
+                   </div>
+                   <div class="container">
+                     <div class="row">
+                         <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
+                         <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
+                         <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
+                         <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
+                     </div>
+                   </div>              
+               </div>
+             </div>
          </div>
       </main>
 <script>
@@ -55,7 +83,6 @@
  </script>
  <script src="./js/app.js" type="module"></script>
  <script src="./js/auth.js" type="module"></script>
- <script src="./js/main.js" type="module"></script>
- 
+ <script src="./js/main.js" type="module"></script> 
    </body>
 </html>

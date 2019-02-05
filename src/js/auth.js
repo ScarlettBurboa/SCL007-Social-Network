@@ -9,18 +9,15 @@ export const checkAuthState =(callback) =>{
             callback(null)
         }
     })
-
 };
 export const registerUser = (email,password) =>{
     firebase.auth().createUserWithEmailAndPassword(email, password)
-   .then((firebaseUser)=>{
-       console.log("usuario >" + JSON.stringify(firebaseUser.userid) )
-   })
-   .catch(error =>console.log(error.message))
-   document.getElementById('error-m').innerHTML=`${error.message}`;
-
+    .catch(error =>document.getElementById('error-m').innerHTML = `${error.message}`)
    };
-   
+export const loginUserWithEmail = (email,password) =>{
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch(error =>document.getElementById('error-m').innerHTML = `${error.message}`)    
+   };
 export const signOut = ()=>{
     firebase.auth().signOut().then(function() {
         // Sign-out successful.
@@ -28,7 +25,6 @@ export const signOut = ()=>{
         // An error happened.
       });
 };
-
 //Ingresar con cuenta google (Documentación de Firebase)
 export const gmailLogIn = ()=>{
     let provider = new firebase.auth.GoogleAuthProvider(); //Se crea una instancia del objeto del proveedor de Google
@@ -48,17 +44,4 @@ export const gmailLogIn = ()=>{
         let credential = error.credential;
         // ...
       });
-
 };
-
-// clase fabian
-
-export const loginUser = (email, password) => {
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((user)=>{
-        console.log("Usuario logueado > "+JSON.stringify(user));
-      })
-      .catch((error) => {
-        console.error("Error > "+error.message);
-      });
-  }

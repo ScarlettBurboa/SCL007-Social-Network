@@ -1,34 +1,40 @@
-import {checkAuthState, registerUser,gmailLogIn, signOut} from '../js/auth.js';
-
-window.onload = () =>{
-//  btnLogout.style.display = "none";
+import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail} from '../js/auth.js';
+window.onload = () =>{     
      checkAuthState((user) => {
-        if (user){
-            loginRegister.style.display ="none";
-            app.style.display = "block";
+        if(user){
+            document.getElementById('loginRegister').style.display ="none";
+            document.getElementById('app').style.display = "block";
+            document.getElementById('btnLogout').style.display = "block";
         }else{
-           loginRegister.style.display ="block";
-           app.style.display = "none";
+            document.getElementById('loginRegister').style.display ="block";
+            document.getElementById('app').style.display = "none";
+            document.getElementById('btnLogout').style.display = "none";
         }
     });
 }
 //Registrar usuario (email y contraseña)
 const registerWithEmailAndPassword =()=>{
-
     const emailUser = textEmail.value;
     const passwordUser = password.value;
     registerUser(emailUser, passwordUser); 
 };
-btnSignUp.addEventListener('click', registerWithEmailAndPassword);
+document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
+//Iniciar Sesión correo y contraseña
+const signInWithEmailAndPassword = ()=>{
+    const emailUser = textEmail.value;
+    const passwordUser = password.value;
+    loginUserWithEmail(emailUser, passwordUser);  
+};
+document.getElementById('btnLogin').addEventListener('click', signInWithEmailAndPassword);
 //Iniciar sesión con Google
 const logInGoogle =()=>{
   //alert("hola")
   gmailLogIn()
 }
-btnGmail.addEventListener('click', logInGoogle);
+document.getElementById('btnGmail').addEventListener('click', logInGoogle);
 //Cerrar sesión
 const logOut =() =>{
  //console.log("Ud cerro sesión")
   signOut()
 }
-btnLogout.addEventListener('click', logOut);
+document.getElementById('btnLogout').addEventListener('click', logOut);
