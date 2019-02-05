@@ -9,8 +9,8 @@
     max-width: 350px;
 }
 .input-info, .formSignBtn{
-    background-color: #c4c4c4;
-    -webkit-border-radius: 20px;
+    background-color: #d1d1d1; 
+    -webkit-border-radius: 20px; 
     -moz-border-radius:20px;
     border-radius:20px;
     color: #000;
@@ -23,6 +23,9 @@
 }
 .input-info::placeholder{
     color:#898989;
+}
+.input-info{
+    max-width: 318px !important;
 }
 .registro-text{
     text-align:center;
@@ -68,5 +71,16 @@
     text-align: center;
 }
 .box-registro{
-    margin-top:7%;
+    margin-top:5%;
+}
+.error{
+    color:red;
+    font-style: italic;
+    text-align: center;
+    font-size: 15px;
+}
+@media(max-width:468px){
+    .box-registro{
+        margin-top:30%;
+    }
 }
