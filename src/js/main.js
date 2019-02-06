@@ -71,7 +71,6 @@ const savePostIntoDatabase = () => {
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo);
 }
-//Guardar la información de los post en un arreglo, aplicarle revese y luego imprimirla
  const savePostFromDatabase = () => {
      readPost((post)=>{
         const userName = firebase.auth().currentUser.displayName;
@@ -115,28 +114,3 @@ const savePostIntoDatabase = () => {
      });
  }
  document.getElementById('public').addEventListener('click', savePostIntoDatabase);
-
-//Recuperacion de contraseña
-document.getElementById("resetPassword").addEventListener("click",() => {
-    let emailUser = document.getElementById("textEmail").value;
-     firebase.auth().sendPasswordResetEmail(emailUser)
- .then(function() {
-     document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
- }).catch(error => {
-     document.getElementById('warning').innerHTML = "Ingrese su email"
- });
- })
-
-
- /*
- Probando tareas de autentificación
-//Enviar correo para verificación 
-checkEmail = ()=>{
-    firebase.auth().currentUser.sendEmailVerification()
-    .then(function(){
-        document.getElementById('registro-text').innerHTML = "Confirma tu cuenta desde tu Email"
-    })
-    .catch(error =>{
-        document.getElementById('registro-text').innerHTML = "Ingrese su email"
-    })
-};*/

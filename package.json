@@ -10,15 +10,13 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/preset-env": "^7.3.1",
-    "babel-jest": "^24.1.0",
+    "babel-jest": "^24.0.0",
     "chai": "^4.2.0",
     "eslint": "^5.12.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "firebase-mock": "^2.2.10",
     "jest": "^24.0.0",
-    "jest-cli": "*",
-    "regenerator-runtime": "^0.13.1"
+    "jest-cli": "*"
   },
   "jest": {
     "transform": {
