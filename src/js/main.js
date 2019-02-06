@@ -60,25 +60,33 @@ const savePostIntoDatabase = () => {
      readPost((post)=>{
     postPublished.innerHTML =
     postPublished.innerHTML +
-    `<div class="container">
-    <div class="row">
-       <div class="col-3">
-       <p>${post.val().user}</p>
-       <img src="${post.val().userphoto}" alt="imagen usuario">
+    `<div class="row">
+    <div class="col-12">
+       <div class="col-2 box-img">
+          <p>${post.val().user}</p>
+          <img class="img-profile" src="${post.val().userphoto}" alt="imagen usuario">
        </div>
-       <div class="col-9">                 
+       <div class="col-9 question-published clearfix">
           <div class="row">
-                <p class="col-12">${post.val().pospublic}</p>
+             <div class="col-12">
+                <p class="caja-texto">${post.val().pospublic}
+                </p>
+             </div>
+          </div>
+
+          <div class="row icon-group">
+            
                 <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
                 <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
-                <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
-                <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
-                <div class="col-12">
-                   <button>Ver respuesta</button>
-                </div>
-             </div>
+                <div class="col-5"><i class="far fa-comment-dots"></i> Comentarios</div>
+                <div class="col-1"><i class="fas fa-exclamation"></i></div>
+            
+          </div>
+          
        </div>
-
+       <div class="col-9 float-right">
+             <button class="col-12 btnAnswer">Ver respuesta</button>
+       </div>
     </div>
  </div>`
      });

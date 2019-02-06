@@ -84,3 +84,103 @@
         margin-top:30%;
     }
 }
+
+/* pantalla principal */
+
+/* box para hacer preguntas */
+#app{
+    background-color: #ffffff;
+    }
+    
+    .box-post {
+        border: #898989 1px solid;
+        padding: 5px;
+    }
+    .img-profile {
+         margin: 0 auto;
+         width: 50px;
+         
+    }
+    
+    .question {
+        padding-top: 3px;
+    }
+    textarea.answer {
+        margin-top: 5px;
+        min-height: 30px;
+        max-height: 30px;
+        min-width: 250px;
+        max-width: 250px;
+        border-radius: 50px;
+    }
+    
+    textarea.answer::placeholder {
+    padding: 5px;
+    text-align: center;
+    }
+    
+    .box-img {
+        padding-left: 10px;
+        padding-top: 5px;
+    }
+    .img-profile {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        
+    } 
+    .btnPublish {
+        float: right;
+        margin-right: 20px;
+    }
+    
+    /* box para ver posteos */
+    
+    #postPublished.container {
+        padding-top: 10%;
+        width: 93%;
+    }
+    
+    .question-published{
+        border: #898989 1px solid;
+        float: right;
+    }
+    .icon-group {
+        border-top: #898989 1px solid;
+    }
+    
+    .float-right {
+        float: right;
+    }
+    
+    .caja-texto {
+        min-height: 65px;
+        max-height: 65px;
+        min-width: 261px;
+        max-width: 261px;
+    }
+    .btnAnswer {
+        margin-top: 5px;
+        background-color: #1AA9E2;
+        color: #fff;
+        -webkit-border-radius: 20px; 
+        -moz-border-radius:20px;
+        border-radius:20px;
+        border: 0.5px solid #898989;
+        box-sizing: border-box;
+    }
+    
+  
+    
+    .clearfix:before,
+    .clearfix:after {
+      content: " ";
+      /* 1 */
+      display: table;
+      /* 2 */
+    }
+    
+    .clearfix:after {
+      clear: both;
+    }
+
