@@ -98,6 +98,11 @@ const savePostIntoDatabase = () => {
        `;  document.getElementById(coment.key).addEventListener('click', deletePost)
     });     
   }
+// Eliminar post
+
+
+
+
 //Recuperacion de contraseña
 document.getElementById("forgotPassword").addEventListener("click",() => {
     let emailUser = document.getElementById("textEmail").value;
