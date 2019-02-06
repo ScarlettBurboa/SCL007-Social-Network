@@ -56,37 +56,37 @@ const savePostIntoDatabase = () => {
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo);
 }
+//Guardar la información de los post en un arreglo, aplicarle revese y luego imprimirla
  const savePostFromDatabase = () => {
      readPost((post)=>{
+         
     postPublished.innerHTML =
-    postPublished.innerHTML +
     `<div class="container">
     <div class="row">
-       <div class="col-3">
-       <p>${post.val().user}</p>
-       <img src="${post.val().userphoto}" alt="imagen usuario">
-       </div>
-       <div class="col-9">                 
-          <div class="row">
-                <p class="col-12">${post.val().pospublic}</p>
-                <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
-                <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
-                <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
-                <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
-                <div class="col-12">
-                   <button>Ver respuesta</button>
-                </div>
-             </div>
-       </div>
-
+    <div class="col-3">
+    <p>${post.val().user}</p>
+    <img src="${post.val().userphoto}" alt="imagen usuario">
     </div>
- </div>`
-     });
- }
-document.getElementById('public').addEventListener('click', savePostIntoDatabase);
-
-
-const readPostFromDatabase = () => {
+    <div class="col-9">                 
+    <div class="row">
+    <p class="col-12">${post.val().pospublic}</p>
+    <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
+    <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
+    <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
+    <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
+    <div class="col-12">
+    <button>Ver respuesta</button>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>`  + postPublished.innerHTML;
+    });
+    }
+    document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+     
+    const readPostFromDatabase = () => {
     root.style.display="block"
     readPost((coment)=>{            
         newcoments.innerHTML  += 
@@ -124,5 +124,3 @@ checkEmail = ()=>{
 
 
 
-
-/*Guardar la información de los post en un arreglo, aplicarle revese y luego imprimirla*/
