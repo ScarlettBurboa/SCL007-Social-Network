@@ -93,6 +93,10 @@
 .show{
     display:block !important;
 }
+.space{
+    margin:8px auto;
+    display: block;
+}
 @media(max-width:468px){
     .box-registro{
         margin-top:30%;

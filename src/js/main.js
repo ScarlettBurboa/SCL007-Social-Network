@@ -77,12 +77,12 @@ const savePostIntoDatabase = () => {
    const photo = firebase.auth().currentUser.photoURL;
      document.getElementById('postPublished').innerHTML = 
     `<div class="row">
-    <div class="col-12">
+    <div class="col-12 space">
        <div class="col-2 box-img">
          <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
           <div id="namePerfil" class="hide"><p>${post.val().user}</p></div>
            <div id="imagenPerfil" class="hide"><img class="img-profile" src="${post.val().userphoto}" alt="imagen usuario"></div>
-          <div id="imagenAnonimo" class="hide"><img src="./assets/user1.png" alt="imagen usuario"></div>
+          <div id="imagenAnonimo" class="hide"><img class="img-profile" src="./assets/user1.png" alt="imagen usuario"></div>
        </div>
        <div class="col-9 question-published clearfix">
           <div class="row">
