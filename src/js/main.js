@@ -127,7 +127,7 @@ document.getElementById("resetPassword").addEventListener("click",() => {
  });
  })
 
-
+// GIT PERDONAMEEEEEEEEEEEEEEEEEEEEEEEEEE
  /*
  Probando tareas de autentificación
 //Enviar correo para verificación 
