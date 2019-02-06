@@ -73,31 +73,41 @@ const savePostIntoDatabase = () => {
 }
  const savePostFromDatabase = () => {
      readPost((post)=>{
-        const userName = firebase.auth().currentUser.displayName;
-        const photo = firebase.auth().currentUser.photoURL;
+   const userName = firebase.auth().currentUser.displayName;
+   const photo = firebase.auth().currentUser.photoURL;
      document.getElementById('postPublished').innerHTML = 
-    `<div class="container">
-        <div class="row">
-            <div class="col-3">
-                <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
-                <div id="namePerfil" class="hide"><p>${post.val().user}</p></div>
-                <div id="imagenPerfil" class="hide"><img src="${post.val().userphoto}" alt="imagen usuario"></div>
-                <div id="imagenAnonimo" class="hide"><img src="./assets/user1.png" alt="imagen usuario"></div>               
-            </div>
-            <div class="col-9">                 
-                <div class="row">
-                    <p class="col-12">${post.val().pospublic}</p>
-                    <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
-                    <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
-                    <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
-                    <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
-                    <div class="col-12">
-                   <button>Ver respuesta</button>
-                </div>
+    `<div class="row">
+    <div class="col-12">
+       <div class="col-2 box-img">
+         <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
+          <div id="namePerfil" class="hide"><p>${post.val().user}</p></div>
+           <div id="imagenPerfil" class="hide"><img class="img-profile" src="${post.val().userphoto}" alt="imagen usuario"></div>
+          <div id="imagenAnonimo" class="hide"><img src="./assets/user1.png" alt="imagen usuario"></div>
+       </div>
+       <div class="col-9 question-published clearfix">
+          <div class="row">
+             <div class="col-12">
+                <p class="caja-texto">${post.val().pospublic}
+                </p>
              </div>
-        </div>
-    </div>` + document.getElementById('postPublished').innerHTML;
-            if(userName === null){
+          </div>
+
+          <div class="row icon-group">
+            
+                <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
+                <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
+                <div class="col-5"><i class="far fa-comment-dots"></i> Comentarios</div>
+                <div class="col-1"><i class="fas fa-exclamation"></i></div>
+            
+          </div>
+          
+       </div>
+       <div class="col-9 float-right">
+             <button class="col-12 btnAnswer">Ver respuesta</button>
+       </div>
+    </div>
+ </div>` + document.getElementById('postPublished').innerHTML;
+       if(userName === null){
                 console.log('No Tiene nombre de usuario se ingresará una por defecto');
                 document.getElementById('nameAnonimo').classList.add('show'); 
             }else{ 
@@ -111,6 +121,7 @@ const savePostIntoDatabase = () => {
                 console.log('Tiene imagen de usuario'); 
                 document.getElementById('imagenPerfil').classList.add('show'); 
             };        
+
      });
  }
  document.getElementById('public').addEventListener('click', savePostIntoDatabase);

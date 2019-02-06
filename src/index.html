@@ -43,29 +43,38 @@
                </div>
             </div>
          </div>
-         <!-- aqui comienza contenido para los usuarios logueados -->
-         <div class="container" id="app">
-            <header class="row">
-               <div class="col-12">
-                  <button id="btnLogout"> Cerrar Sesión</button>
-            </header>
-            <div class="col-4">
-               <img src="./assets/user11.png" alt="">
-            </div>
-            <!--   caja para postear -->
-            <div class="col-8">
-               <div class="question">
-                  <textarea id="postContent" class="answer" type="text" placeholder="¿Qué quieres preguntar?"> </textarea>
-                  <button id="public">Publicar</button>
+      </main>
+         
+        <!-- aqui comienza contenido para los usuarios logueados -->
+   <section id="app" class="container">
+         <header class="row">
+            <div class="col-12">
+               <button id="btnLogout"> Cerrar Sesión</button>
+         </header>
+   
+         <!--  caja para postear -->
+         <div class="container-fluid box-post clearfix">
+            <div class="row">
+               <div class="col-3">
+                  <img class="img-profile" src="./assets/user11.png" alt="">
+               </div>
+               <div class="col-9">
+                  <div class="question">
+                     <textarea id="postContent" class="answer" type="text" placeholder="¿Qué quieres preguntar?"></textarea>
+                  </div>
                </div>
             </div>
-
-            <!-- caja para ingresar comentarios -->
-            <div id="postPublished" class="col-9"></div>
+            <button class="btnPublish btnAnswer" id="public">Publicar</button>
          </div>
-      </div> <!--  .container -->
-      </div>
-   </main>
+   
+   
+         <!-- caja para ingresar comentarios -->
+         <div id="postPublished" class="container">
+
+         </div>
+      </section><!--  .container -->
+  
+
    <script>
       // Initialize Firebase
       const config = {
