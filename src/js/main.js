@@ -5,14 +5,29 @@ window.onload = () =>{
         if(user){
             document.getElementById('loginRegister').style.display ="none";
             document.getElementById('app').style.display = "block";
+            document.getElementById('btnLogout').style.display = "block"; 
             savePostFromDatabase();
-            document.getElementById('btnLogout').style.display = "block";
-            
+            console.log(savePostFromDatabase);
+            if(user.displayName === null){
+                console.log('No Tiene nombre de usuario se ingresará una por defecto');
+                document.getElementById('namePerfil').classList.add('show'); 
+            }else{ 
+                console.log('Tiene nombre de usuario'); 
+                document.getElementById('nameAnonimo').classList.add('show');
+            }; 
+            if(user.photoURL === null){
+                console.log('No Tiene imagen de usuario se ingresará una por defecto');
+                document.getElementById('imagenPerfil').classList.add('show');
+            }else{
+                console.log('Tiene imagen de usuario'); 
+                document.getElementById('imagenAnonimo').classList.add('show'); 
+            };        
         }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
             document.getElementById('btnLogout').style.display = "none";
         }
+   
     });
 }
 //Registrar usuario (email y contraseña)
@@ -58,29 +73,29 @@ const savePostIntoDatabase = () => {
 }
  const savePostFromDatabase = () => {
      readPost((post)=>{
-    postPublished.innerHTML =
-    postPublished.innerHTML +
+    document.getElementById('postPublished').innerHTML = document.getElementById('postPublished').innerHTML +
     `<div class="container">
-    <div class="row">
-       <div class="col-3">
-       <p>${post.val().user}</p>
-       <img src="${post.val().userphoto}" alt="imagen usuario">
-       </div>
-       <div class="col-9">                 
-          <div class="row">
-                <p class="col-12">${post.val().pospublic}</p>
-                <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
-                <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
-                <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
-                <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
-                <div class="col-12">
+        <div class="row">
+            <div class="col-3">
+                <div id="nameAnonimo"><p>Anónimo</p></div>
+                <div id="namePerfil"><p>${post.val().user}</p></div>
+                <div id="imagenPerfil"><img src="${post.val().userphoto}" alt="imagen usuario"></div>
+                <div id="imagenAnonimo"><img src="./assets/user1.png" alt="imagen usuario"></div>               
+            </div>
+            <div class="col-9">                 
+                <div class="row">
+                    <p class="col-12">${post.val().pospublic}</p>
+                    <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
+                    <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
+                    <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
+                    <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
+                    <div class="col-12">
                    <button>Ver respuesta</button>
                 </div>
              </div>
-       </div>
-
-    </div>
- </div>`
+        </div>
+    </div>`
+    
      });
  }
-document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+ document.getElementById('public').addEventListener('click', savePostIntoDatabase);
