@@ -8,7 +8,7 @@
     width: 100%;
     max-width: 350px;
 }
-.input-info, .formSignBtn, #forgotPassword{
+.input-info, .formSignBtn{
     background-color: #d1d1d1; 
     -webkit-border-radius: 20px; 
     -moz-border-radius:20px;
@@ -32,7 +32,7 @@
     width: 100%;
     margin: 15px auto;
 }
-.formSignBtn, #forgotPassword{
+.formSignBtn{
      background-color: #1AA9E2;
      color: #fff;
     }

@@ -71,7 +71,6 @@ const savePostIntoDatabase = () => {
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo);
 }
-//Guardar la información de los post en un arreglo, aplicarle revese y luego imprimirla
  const savePostFromDatabase = () => {
      readPost((post)=>{
         const userName = firebase.auth().currentUser.displayName;
@@ -140,3 +139,4 @@ checkEmail = ()=>{
         document.getElementById('registro-text').innerHTML = "Ingrese su email"
     })
 };*/
+
