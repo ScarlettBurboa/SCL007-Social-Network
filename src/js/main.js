@@ -7,7 +7,7 @@ window.onload = () =>{
             document.getElementById('app').style.display = "block";
             document.getElementById('btnLogout').style.display = "block"; 
             savePostFromDatabase();
-            console.log(savePostFromDatabase);
+            /* console.log(savePostFromDatabase);
             if(user.displayName === null){
                 console.log('No Tiene nombre de usuario se ingresará una por defecto');
                 document.getElementById('namePerfil').classList.add('show'); 
@@ -21,7 +21,7 @@ window.onload = () =>{
             }else{
                 console.log('Tiene imagen de usuario'); 
                 document.getElementById('imagenAnonimo').classList.add('show'); 
-            };        
+            };         */
         }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
@@ -73,14 +73,16 @@ const savePostIntoDatabase = () => {
 }
  const savePostFromDatabase = () => {
      readPost((post)=>{
-    document.getElementById('postPublished').innerHTML = document.getElementById('postPublished').innerHTML +
+        const userName = firebase.auth().currentUser.displayName;
+        const photo = firebase.auth().currentUser.photoURL;
+     document.getElementById('postPublished').innerHTML = 
     `<div class="container">
         <div class="row">
             <div class="col-3">
-                <div id="nameAnonimo"><p>Anónimo</p></div>
-                <div id="namePerfil"><p>${post.val().user}</p></div>
-                <div id="imagenPerfil"><img src="${post.val().userphoto}" alt="imagen usuario"></div>
-                <div id="imagenAnonimo"><img src="./assets/user1.png" alt="imagen usuario"></div>               
+                <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
+                <div id="namePerfil" class="hide"><p>${post.val().user}</p></div>
+                <div id="imagenPerfil" class="hide"><img src="${post.val().userphoto}" alt="imagen usuario"></div>
+                <div id="imagenAnonimo" class="hide"><img src="./assets/user1.png" alt="imagen usuario"></div>               
             </div>
             <div class="col-9">                 
                 <div class="row">
@@ -94,8 +96,21 @@ const savePostIntoDatabase = () => {
                 </div>
              </div>
         </div>
-    </div>`
-    
+    </div>` + document.getElementById('postPublished').innerHTML;
+            if(userName === null){
+                console.log('No Tiene nombre de usuario se ingresará una por defecto');
+                document.getElementById('nameAnonimo').classList.add('show'); 
+            }else{ 
+                console.log('Tiene nombre de usuario'); 
+                document.getElementById('namePerfil').classList.add('show');
+            }; 
+            if(photo === null){
+                console.log('No Tiene imagen de usuario se ingresará una por defecto');
+                document.getElementById('imagenAnonimo').classList.add('show');
+            }else{
+                console.log('Tiene imagen de usuario'); 
+                document.getElementById('imagenPerfil').classList.add('show'); 
+            };        
      });
  }
  document.getElementById('public').addEventListener('click', savePostIntoDatabase);
