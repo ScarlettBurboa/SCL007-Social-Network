@@ -45,8 +45,7 @@ export const gmailLogIn = () => {
     });
 
 };
-
-    export const facebookLogIn = () => {
+export const facebookLogIn = () => {
     let provider = new firebase.auth.FacebookAuthProvider();
     firebase.auth().signInWithPopup(provider).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API. (acceso a google)
@@ -65,14 +64,4 @@ export const gmailLogIn = () => {
         // ...
     });
 }; 
-
-export function deletePost(){
  
-    firebase.database().ref('posts/'+ this.id).set({
-      null:null
-    })
-    firebase.database().ref('/users/' + firebase.auth().currentUser.uid+ '/post/'+ this.id).set({
-      null:null
-    })
-  
-  };

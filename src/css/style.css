@@ -79,6 +79,20 @@
     text-align: center;
     font-size: 15px;
 }
+.button-reset-password{
+    background-color: transparent;
+    border: none;
+    font-style: italic;
+    text-align: center;
+    margin: 0 auto;
+    display:block;
+}
+.hide{
+    display:none;
+}
+.show{
+    display:block !important;
+}
 @media(max-width:468px){
     .box-registro{
         margin-top:30%;

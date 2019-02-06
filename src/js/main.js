@@ -5,14 +5,29 @@ window.onload = () =>{
         if(user){
             document.getElementById('loginRegister').style.display ="none";
             document.getElementById('app').style.display = "block";
+            document.getElementById('btnLogout').style.display = "block"; 
             savePostFromDatabase();
-            document.getElementById('btnLogout').style.display = "block";
-            
+            /* console.log(savePostFromDatabase);
+            if(user.displayName === null){
+                console.log('No Tiene nombre de usuario se ingresará una por defecto');
+                document.getElementById('namePerfil').classList.add('show'); 
+            }else{ 
+                console.log('Tiene nombre de usuario'); 
+                document.getElementById('nameAnonimo').classList.add('show');
+            }; 
+            if(user.photoURL === null){
+                console.log('No Tiene imagen de usuario se ingresará una por defecto');
+                document.getElementById('imagenPerfil').classList.add('show');
+            }else{
+                console.log('Tiene imagen de usuario'); 
+                document.getElementById('imagenAnonimo').classList.add('show'); 
+            };         */
         }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
             document.getElementById('btnLogout').style.display = "none";
         }
+   
     });
 }
 //Registrar usuario (email y contraseña)
@@ -59,73 +74,44 @@ const savePostIntoDatabase = () => {
 //Guardar la información de los post en un arreglo, aplicarle revese y luego imprimirla
  const savePostFromDatabase = () => {
      readPost((post)=>{
-         
-    postPublished.innerHTML =
+        const userName = firebase.auth().currentUser.displayName;
+        const photo = firebase.auth().currentUser.photoURL;
+     document.getElementById('postPublished').innerHTML = 
     `<div class="container">
-    <div class="row">
-    <div class="col-3">
-    <p>${post.val().user}</p>
-    <img src="${post.val().userphoto}" alt="imagen usuario">
-    </div>
-    <div class="col-9">                 
-    <div class="row">
-    <p class="col-12">${post.val().pospublic}</p>
-    <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
-    <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
-    <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
-    <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
-    <div class="col-12">
-    <button>Ver respuesta</button>
-    </div>
-    </div>
-    </div>
-    
-    </div>
-    </div>`  + postPublished.innerHTML;
-    });
-    }
-    document.getElementById('public').addEventListener('click', savePostIntoDatabase);
-     
-    const readPostFromDatabase = () => {
-    root.style.display="block"
-    readPost((coment)=>{            
-        newcoments.innerHTML  += 
-      `<div id= ${coment.key}>
-      <h3>${coment.val().title}</h3>
-       <p>${coment.val().body}</p>
-       <button id=" ${coment.key}">borrar</button>
-       </div>
-       `;  document.getElementById(coment.key).addEventListener('click', deletePost)
-    });     
-  }
-// Eliminar post
-
-
-
-
-//Recuperacion de contraseña
-document.getElementById("forgotPassword").addEventListener("click",() => {
-    let emailUser = document.getElementById("textEmail").value;
-     firebase.auth().sendPasswordResetEmail(emailUser)
- .then(function() {
-     document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
- }).catch(error => {
-     document.getElementById('warning').innerHTML = "Ingrese su email"
- });
- })
-
- /*
- Probando tareas de autentificación
-//Enviar correo para verificación 
-checkEmail = ()=>{
-    firebase.auth().currentUser.sendEmailVerification()
-    .then(function(){
-        document.getElementById('registro-text').innerHTML = "Confirma tu cuenta desde tu Email"
-    })
-    .catch(error =>{
-        document.getElementById('registro-text').innerHTML = "Ingrese su email"
-    })
-};*/
-
-
-
+        <div class="row">
+            <div class="col-3">
+                <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
+                <div id="namePerfil" class="hide"><p>${post.val().user}</p></div>
+                <div id="imagenPerfil" class="hide"><img src="${post.val().userphoto}" alt="imagen usuario"></div>
+                <div id="imagenAnonimo" class="hide"><img src="./assets/user1.png" alt="imagen usuario"></div>               
+            </div>
+            <div class="col-9">                 
+                <div class="row">
+                    <p class="col-12">${post.val().pospublic}</p>
+                    <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
+                    <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
+                    <div class="col-3"><i class="far fa-comment-dots"></i> Comentarios</div>
+                    <div class="col-3"><i class="fas fa-exclamation"></i> Reportar</div>
+                    <div class="col-12">
+                   <button>Ver respuesta</button>
+                </div>
+             </div>
+        </div>
+    </div>` + document.getElementById('postPublished').innerHTML;
+            if(userName === null){
+                console.log('No Tiene nombre de usuario se ingresará una por defecto');
+                document.getElementById('nameAnonimo').classList.add('show'); 
+            }else{ 
+                console.log('Tiene nombre de usuario'); 
+                document.getElementById('namePerfil').classList.add('show');
+            }; 
+            if(photo === null){
+                console.log('No Tiene imagen de usuario se ingresará una por defecto');
+                document.getElementById('imagenAnonimo').classList.add('show');
+            }else{
+                console.log('Tiene imagen de usuario'); 
+                document.getElementById('imagenPerfil').classList.add('show'); 
+            };        
+     });
+ }
+ document.getElementById('public').addEventListener('click', savePostIntoDatabase);
