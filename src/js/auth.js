@@ -65,3 +65,14 @@ export const gmailLogIn = () => {
         // ...
     });
 }; 
+
+export function deletePost(){
+ 
+    firebase.database().ref('posts/'+ this.id).set({
+      null:null
+    })
+    firebase.database().ref('/users/' + firebase.auth().currentUser.uid+ '/post/'+ this.id).set({
+      null:null
+    })
+  
+  };

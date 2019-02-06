@@ -84,3 +84,45 @@ const savePostIntoDatabase = () => {
      });
  }
 document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+
+
+const readPostFromDatabase = () => {
+    root.style.display="block"
+    readPost((coment)=>{            
+        newcoments.innerHTML  += 
+      `<div id= ${coment.key}>
+      <h3>${coment.val().title}</h3>
+       <p>${coment.val().body}</p>
+       <button id=" ${coment.key}">borrar</button>
+       </div>
+       `;  document.getElementById(coment.key).addEventListener('click', deletePost)
+    });     
+  }
+//Recuperacion de contraseña
+document.getElementById("forgotPassword").addEventListener("click",() => {
+    let emailUser = document.getElementById("textEmail").value;
+     firebase.auth().sendPasswordResetEmail(emailUser)
+ .then(function() {
+     document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
+ }).catch(error => {
+     document.getElementById('warning').innerHTML = "Ingrese su email"
+ });
+ })
+
+ /*
+ Probando tareas de autentificación
+//Enviar correo para verificación 
+checkEmail = ()=>{
+    firebase.auth().currentUser.sendEmailVerification()
+    .then(function(){
+        document.getElementById('registro-text').innerHTML = "Confirma tu cuenta desde tu Email"
+    })
+    .catch(error =>{
+        document.getElementById('registro-text').innerHTML = "Ingrese su email"
+    })
+};*/
+
+
+
+
+/*Guardar la información de los post en un arreglo, aplicarle revese y luego imprimirla*/

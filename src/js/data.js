@@ -13,3 +13,4 @@ export const readPost = (onPostChange) =>{
         onPostChange(post);
     });
 };
+
