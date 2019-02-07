@@ -83,7 +83,7 @@ const savePostIntoDatabase = () => {
    const userName = firebase.auth().currentUser.displayName;
    const photo = firebase.auth().currentUser.photoURL;
      document.getElementById('postPublished').innerHTML = 
-    `<div class="row">
+   /*  `<div class="row">
     <div class="col-12 space">
        <div class="col-2 box-img">
          <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
@@ -101,7 +101,7 @@ const savePostIntoDatabase = () => {
 
           <div class="row icon-group">
             
-                <div class="col-2"><button class="post-icon"><i class="far fa-heart"></i></button></div>
+                <div class="col-2"><button class="post-icon ><i id="btnToggle" class="far fa-heart"></i></button></div>
                 <div class="col-2"><button class="post-icon"><i class="far fa-bookmark"></i></div>
                 <div class="col-2"><button class="post-icon"><i class="far fa-comment-dots"></i></button></div>
                 <div class="col-6"><button class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
@@ -113,7 +113,7 @@ const savePostIntoDatabase = () => {
              <button class="col-12 btnAnswer">Ver respuesta</button>
        </div>
     </div>
- </div>` + document.getElementById('postPublished').innerHTML;
+ </div>` */ + document.getElementById('postPublished').innerHTML;
        if(userName === null){
                 console.log('No Tiene nombre de usuario se ingresará una por defecto');
                 document.getElementById('nameAnonimo').classList.add('show'); 
@@ -143,6 +143,7 @@ document.getElementById("resetPassword").addEventListener("click",() => {
      document.getElementById('warning').innerHTML = "Ingrese su email"
  });
  })
+
 
 // GIT PERDONAMEEEEEEEEEEEEEEEEEEEEEEEEEE
  /*
