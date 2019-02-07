@@ -150,6 +150,11 @@
     margin-bottom: 15px; 
     text-align: justify;
 }
+.post-icon{
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
 /* pantalla principal */
 
 /* box para hacer preguntas */
