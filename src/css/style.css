@@ -97,12 +97,59 @@
     margin:8px auto;
     display: block;
 }
-@media(max-width:468px){
-    .box-registro{
-        margin-top:30%;
-    }
+.button-left i, .button-right i {
+    border-radius: 50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border: 1px #898989 solid;
+    color: #464646;
+    padding: 8px;
 }
-
+.button-left, .button-right{
+ margin: 10px 0;
+ background-color: transparent;
+ border:none;
+}
+.button-left{
+    float: left;
+}
+.button-right{
+    float:right;
+}
+.sectionfooter{
+    border-top: 1px #898989 solid; 
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+.button-footer{
+    margin:0 auto;
+    display:block;
+    background-color: transparent;
+    border:none;
+}
+.button-footer i{
+    margin:0 auto;
+    display:block;
+    color: #464646;
+    font-size: 20px;
+    padding: 15px 0;
+}
+.section-Answer{
+    background-color: #f1f1f1;
+    margin-top: 45px;
+}
+.name-especialist{
+    color: #1AA9E2;
+    font-size: 15px; 
+    margin-bottom: 10px; 
+    font-style: italic;
+    padding: 10px 5px;
+}
+.answer-especialist{
+    padding: 10px 5px;
+    margin-bottom: 15px; 
+    text-align: justify;
+}
 /* pantalla principal */
 
 /* box para hacer preguntas */
@@ -122,13 +169,13 @@
     
     .question {
         padding-top: 3px;
+        width:100%;
     }
     textarea.answer {
         margin-top: 5px;
-        min-height: 30px;
-        max-height: 30px;
-        min-width: 250px;
-        max-width: 250px;
+        height: 35px;
+        width:90%;
+        padding: 5px 10px;
         border-radius: 50px;
     }
     
@@ -145,6 +192,7 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
+        margin-top: 10px;
         
     } 
     .btnPublish {
@@ -155,16 +203,16 @@
     /* box para ver posteos */
     
     #postPublished.container {
-        padding-top: 10%;
+        padding-top: 5%;
         width: 93%;
     }
     
     .question-published{
-        border: #898989 1px solid;
-        float: right;
+          float: right;
     }
     .icon-group {
         border-top: #898989 1px solid;
+        padding: 10px 0;
     }
     
     .float-right {
@@ -181,6 +229,8 @@
         margin-top: 5px;
         background-color: #1AA9E2;
         color: #fff;
+        padding: 5px 15px;
+        margin-bottom: 10px;
         -webkit-border-radius: 20px; 
         -moz-border-radius:20px;
         border-radius:20px;
@@ -201,9 +251,20 @@
     .clearfix:after {
       clear: both;
     }
+    @media(max-width:468px){
+        .box-registro{
+            margin-top:30%;
+        }
+        #app{
+            margin-top: -20%;
 
-
-.btnTog {
-   color: #ea4335;
-
-}
+        }
+    }
+    @media(min-width:468px){
+        #app{
+            width:100%;
+            margin: 0 auto;
+            display:block;
+            max-width: 500px;
+        }
+    }
