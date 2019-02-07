@@ -1,4 +1,4 @@
-import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn} from '../js/auth.js';
+import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
 import { savePost, readPost } from '../js/data.js';
 window.onload = () =>{     
      checkAuthState((user) => {
@@ -68,7 +68,7 @@ const savePostIntoDatabase = () => {
    const userName = firebase.auth().currentUser.displayName;
    const photo = firebase.auth().currentUser.photoURL;
      document.getElementById('postPublished').innerHTML = 
-   /*  `<div class="row">
+     `<div class="row">
     <div class="col-12 space">
        <div class="col-2 box-img">
          <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
@@ -106,7 +106,7 @@ const savePostIntoDatabase = () => {
              </div>
        </div>
     </div>
- </div>` */ + document.getElementById('postPublished').innerHTML;
+ </div>` + document.getElementById('postPublished').innerHTML;
        if(userName === null){
                 console.log('No Tiene nombre de usuario se ingresará una por defecto');
                 document.getElementById('nameAnonimo').classList.add('show'); 
