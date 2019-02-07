@@ -11,7 +11,10 @@ export const checkAuthState = (callback) => {
 };
 export const registerUser = (email, password) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
-        .catch(error => document.getElementById('error-m').innerHTML = `${error.message}`)
+    .then(function(){
+        checkEmail()
+    })
+    .catch(error => document.getElementById('error-m').innerHTML = `${error.message}`)
 };
 export const loginUserWithEmail = (email, password) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
@@ -20,7 +23,8 @@ export const loginUserWithEmail = (email, password) => {
 export const signOut = () => {
     firebase.auth().signOut().then(function () {
         // Sign-out successful.
-    }).catch(function (error) {
+    })
+    .catch(function (error) {
         // An error happened.
     });
 };
@@ -64,4 +68,14 @@ export const facebookLogIn = () => {
         // ...
     });
 }; 
- 
+ //Enviar correo para verificación 
+function checkEmail(){
+    firebase.auth().currentUser.sendEmailVerification()
+    .then(function(){
+       //console.log("correo enviado")
+       document.getElementById('app').innerHTML = "Confirma tu cuenta desde tu Email"
+    })
+    .catch(error =>{
+       document.getElementById('app').innerHTML = "Ingrese su email"
+    })
+};

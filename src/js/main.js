@@ -130,17 +130,3 @@ document.getElementById("resetPassword").addEventListener("click",() => {
  });
  })
 
-// GIT PERDONAMEEEEEEEEEEEEEEEEEEEEEEEEEE
- /*
- Probando tareas de autentificación
-//Enviar correo para verificación 
-checkEmail = ()=>{
-    firebase.auth().currentUser.sendEmailVerification()
-    .then(function(){
-        document.getElementById('registro-text').innerHTML = "Confirma tu cuenta desde tu Email"
-    })
-    .catch(error =>{
-        document.getElementById('registro-text').innerHTML = "Ingrese su email"
-    })
-};*/
-
