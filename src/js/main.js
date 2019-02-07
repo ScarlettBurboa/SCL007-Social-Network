@@ -1,5 +1,5 @@
 import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import { savePost, readPost } from '../js/data.js';
+import { savePost, readPost, savePostWall, readPostWall  } from '../js/data.js';
 window.onload = () =>{     
      checkAuthState((user) => {
         if(user){
@@ -7,7 +7,7 @@ window.onload = () =>{
             document.getElementById('app').style.display = "block";
             document.getElementById('btnLogout').style.display = "block"; 
             savePostFromDatabase();
-        }else{
+         }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
             document.getElementById('btnLogout').style.display = "none";
@@ -57,14 +57,27 @@ const logInTwitter = () => {
 document.getElementById('btnTwitter').addEventListener('click', logInTwitter); 
 
 
-const savePostIntoDatabase = () => {
+const savePostIntoDatabaseUser = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo);
 }
- const savePostFromDatabase = () => {
+ const savePostFromDatabaseUser = () => {
      readPost((post)=>{
+    
+     });     
+ }
+ document.getElementById('public').addEventListener('click', savePostIntoDatabaseUser);
+ /*-------------------------------------------------------------*/
+ const savePostIntoDatabase = () => {
+    const userName = firebase.auth().currentUser.displayName;
+    const post = document.getElementById('postContent').value;
+    const photo = firebase.auth().currentUser.photoURL;
+    savePostWall(userName, post, photo);
+}
+ const savePostFromDatabase = () => {
+     readPostWall((postWall)=>{
    const userName = firebase.auth().currentUser.displayName;
    const photo = firebase.auth().currentUser.photoURL;
      document.getElementById('postPublished').innerHTML = 
@@ -72,14 +85,14 @@ const savePostIntoDatabase = () => {
     <div class="col-12 space">
        <div class="col-2 box-img">
          <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
-          <div id="namePerfil" class="hide"><p>${post.val().user}</p></div>
-           <div id="imagenPerfil" class="hide"><img class="img-profile" src="${post.val().userphoto}" alt="imagen usuario"></div>
+          <div id="namePerfil" class="hide"><p>${postWall.val().userWall}</p></div>
+           <div id="imagenPerfil" class="hide"><img class="img-profile" src="${postWall.val().userphotoWall}" alt="imagen usuario"></div>
           <div id="imagenAnonimo" class="hide"><img class="img-profile" src="./assets/user1.png" alt="imagen usuario"></div>
        </div>
        <div class="col-9 question-published clearfix">
           <div class="row">
              <div class="col-12">
-                <p class="caja-texto">${post.val().pospublic}
+                <p class="caja-texto">${postWall.val().pospublicWall}
                 </p>
              </div>
           </div>

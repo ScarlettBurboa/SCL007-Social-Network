@@ -15,3 +15,17 @@ export const readPost = (postChange) =>{
         postChange(post);
     });
 };
+export const savePostWall = (userName, post, photo) => {
+    const keyPost = firebase.database().ref('postWall/').child('postWall').push().key;    
+    firebase.database().ref(`postWall/${keyPost}/`).set({
+        userWall : userName, 
+        pospublicWall : post, 
+        userphotoWall : photo
+    });
+    };
+export const readPostWall = (postChange) =>{
+    const postReference = firebase.database().ref(`post/`);
+    postReference.on('child_added', (postWall) =>{
+        postChange(postWall);
+    });
+};
