@@ -202,3 +202,9 @@
       clear: both;
     }
 
+.post-icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+    height: ; 
+}

@@ -94,10 +94,10 @@ const savePostIntoDatabase = () => {
 
           <div class="row icon-group">
             
-                <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
-                <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
-                <div class="col-5"><i class="far fa-comment-dots"></i> Comentarios</div>
-                <div class="col-1"><i class="fas fa-exclamation"></i></div>
+                <div class="col-2"><button class="post-icon"><i class="far fa-heart"></i></button></div>
+                <div class="col-2"><button class="post-icon"><i class="far fa-bookmark"></i></div>
+                <div class="col-2"><button class="post-icon"><i class="far fa-comment-dots"></i></button></div>
+                <div class="col-6"><button class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
             
           </div>
           
