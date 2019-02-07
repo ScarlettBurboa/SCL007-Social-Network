@@ -60,11 +60,18 @@ const logOut =() =>{
 document.getElementById('btnLogout').addEventListener('click', logOut);
 
 //Iniciar sesión con Facebook
-const logInFacebook = () => {
-    
+const logInFacebook = () => {    
     facebookLogIn()
 }
 document.getElementById('btnFacebook').addEventListener('click', logInFacebook); 
+
+//Iniciar sesión con Twitter
+const logInTwitter = () => {
+    twitterLogIn()
+}
+document.getElementById('btnTwitter').addEventListener('click', logInTwitter); 
+
+
 const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
