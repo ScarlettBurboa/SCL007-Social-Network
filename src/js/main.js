@@ -45,11 +45,18 @@ const logOut =() =>{
 document.getElementById('btnLogout').addEventListener('click', logOut);
 
 //Iniciar sesión con Facebook
-const logInFacebook = () => {
-    
+const logInFacebook = () => {    
     facebookLogIn()
 }
 document.getElementById('btnFacebook').addEventListener('click', logInFacebook); 
+
+//Iniciar sesión con Twitter
+const logInTwitter = () => {
+    twitterLogIn()
+}
+document.getElementById('btnTwitter').addEventListener('click', logInTwitter); 
+
+
 const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
@@ -61,7 +68,7 @@ const savePostIntoDatabase = () => {
    const userName = firebase.auth().currentUser.displayName;
    const photo = firebase.auth().currentUser.photoURL;
      document.getElementById('postPublished').innerHTML = 
-    `<div class="row">
+   /*  `<div class="row">
     <div class="col-12 space">
        <div class="col-2 box-img">
          <div id="nameAnonimo" class="hide"><p>Anónimo</p></div>
@@ -77,11 +84,15 @@ const savePostIntoDatabase = () => {
              </div>
           </div>
 
-          <div class="row icon-group">            
-                <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
-                <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
-                <div class="col-5"><i class="far fa-comment-dots"></i> Comentarios</div>
-                <div class="col-1"><i class="fas fa-exclamation"></i></div>            
+
+          <div class="row icon-group">
+            
+                <div class="col-2"><button class="post-icon ><i id="btnToggle" class="far fa-heart"></i></button></div>
+                <div class="col-2"><button class="post-icon"><i class="far fa-bookmark"></i></div>
+                <div class="col-2"><button class="post-icon"><i class="far fa-comment-dots"></i></button></div>
+                <div class="col-6"><button class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
+            
+
           </div>
           
        </div>
@@ -95,7 +106,7 @@ const savePostIntoDatabase = () => {
              </div>
        </div>
     </div>
- </div>` + document.getElementById('postPublished').innerHTML;
+ </div>` */ + document.getElementById('postPublished').innerHTML;
        if(userName === null){
                 console.log('No Tiene nombre de usuario se ingresará una por defecto');
                 document.getElementById('nameAnonimo').classList.add('show'); 
@@ -129,4 +140,3 @@ document.getElementById("resetPassword").addEventListener("click",() => {
      document.getElementById('warning').innerHTML = "Ingrese su email"
  });
  })
-
