@@ -7,21 +7,6 @@ window.onload = () =>{
             document.getElementById('app').style.display = "block";
             document.getElementById('btnLogout').style.display = "block"; 
             savePostFromDatabase();
-            /* console.log(savePostFromDatabase);
-            if(user.displayName === null){
-                console.log('No Tiene nombre de usuario se ingresará una por defecto');
-                document.getElementById('namePerfil').classList.add('show'); 
-            }else{ 
-                console.log('Tiene nombre de usuario'); 
-                document.getElementById('nameAnonimo').classList.add('show');
-            }; 
-            if(user.photoURL === null){
-                console.log('No Tiene imagen de usuario se ingresará una por defecto');
-                document.getElementById('imagenPerfil').classList.add('show');
-            }else{
-                console.log('Tiene imagen de usuario'); 
-                document.getElementById('imagenAnonimo').classList.add('show'); 
-            };         */
         }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
@@ -92,18 +77,22 @@ const savePostIntoDatabase = () => {
              </div>
           </div>
 
-          <div class="row icon-group">
-            
+          <div class="row icon-group">            
                 <div class="col-3"><i class="far fa-heart"></i> Me gusta</div>
                 <div class="col-3"><i class="far fa-bookmark"></i> Guardar</div>
                 <div class="col-5"><i class="far fa-comment-dots"></i> Comentarios</div>
-                <div class="col-1"><i class="fas fa-exclamation"></i></div>
-            
+                <div class="col-1"><i class="fas fa-exclamation"></i></div>            
           </div>
           
        </div>
        <div class="col-9 float-right">
-             <button class="col-12 btnAnswer">Ver respuesta</button>
+             <button id="actionAnswer" class="col-12 btnAnswer">Ver respuesta</button>
+             <div class="hide section-Answer" id ="especialistAnswer">
+             <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
+             <p class="answer-especialist" id="answerEspecialist">Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores eligendi, 
+             sint ex quas et accusamus amet, praesentium similique perspiciatis nemo esse voluptatum minus placeat 
+             exercitationem consectetur? Ad culpa veniam explicabo.<p>
+             </div>
        </div>
     </div>
  </div>` + document.getElementById('postPublished').innerHTML;
@@ -120,11 +109,15 @@ const savePostIntoDatabase = () => {
             }else{
                 console.log('Tiene imagen de usuario'); 
                 document.getElementById('imagenPerfil').classList.add('show'); 
-            };        
-
+            };   
+            document.getElementById('actionAnswer').addEventListener('click', ()  =>{
+                document.getElementById('especialistAnswer').classList.toggle('show');
+            });     
      });
+     
  }
  document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+ 
 
 //Recuperacion de contraseña
 document.getElementById("resetPassword").addEventListener("click",() => {
