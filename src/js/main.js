@@ -83,7 +83,8 @@ document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
                 <div class="col-2"><button class="post-icon"><i class="far fa-heart"></i></button></div>
                 <div class="col-2"><button class="post-icon"><i class="far fa-bookmark"></button></i></div>
                 <div class="col-2"><button class="post-icon"><i class="far fa-comment-dots"></i></button></div>
-                <div class="col-6"><button class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
+                <div class="col-2"><button class="post-icon"><i class="far fa-trash-alt"></i></button></div>
+                <div class="col-4"><button class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
           </div>          
        </div>
        <div class="col-9 float-right">
