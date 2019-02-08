@@ -1,6 +1,6 @@
 # Orienta2 - Hablemos de sexualidad
 
-![]((https://user-images.githubusercontent.com/45238149/52493032-49d9f900-2ba9-11e9-8574-d9b5414ab26f.png)
+![imagen](https://user-images.githubusercontent.com/45238149/52493032-49d9f900-2ba9-11e9-8574-d9b5414ab26f.png)
 
 ## Índice
 
