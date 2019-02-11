@@ -1,72 +1,86 @@
-import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import {savePost, readPost} from '../js/data.js';
-window.onload = () =>{     
-     checkAuthState((user) => {
-        if(user){
-            document.getElementById('loginRegister').style.display ="none";
-            document.getElementById('app').style.display = "block";
-            document.getElementById('btnLogout').style.display = "block"; 
-            savePostFromDatabase();
-         }else{
-            document.getElementById('loginRegister').style.display ="block";
-            document.getElementById('app').style.display = "none";
-            document.getElementById('btnLogout').style.display = "none";
-        }
-   
-    });
-}
-//Registrar usuario (email y contraseña)
-const registerWithEmailAndPassword =()=>{
-    const emailUser = textEmail.value;
-    const passwordUser = password.value;
-    registerUser(emailUser, passwordUser); 
+import {
+	checkAuthState,
+	registerUser,
+	gmailLogIn,
+	signOut,
+	loginUserWithEmail,
+	facebookLogIn,
+	twitterLogIn,
+	
+} from '../js/auth.js';
+import {
+	savePost,
+    readPost,
+    deleteComment
+} from '../js/data.js';
+window.onload = () => {
+		checkAuthState((user) => {
+			if (user) {
+				document.getElementById('loginRegister').style.display = "none";
+				document.getElementById('app').style.display = "block";
+				document.getElementById('btnLogout').style.display = "block";
+				savePostFromDatabase();
+			} else {
+				document.getElementById('loginRegister').style.display = "block";
+				document.getElementById('app').style.display = "none";
+				document.getElementById('btnLogout').style.display = "none";
+			}
+
+		});
+	}
+	//Registrar usuario (email y contraseña)
+const registerWithEmailAndPassword = () => {
+	const emailUser = textEmail.value;
+	const passwordUser = password.value;
+	registerUser(emailUser, passwordUser);
 };
 document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
 
 //Iniciar Sesión correo y contraseña
-const signInWithEmailAndPassword = ()=>{
-    const emailUser = textEmail.value;
-    const passwordUser = password.value;
-    loginUserWithEmail(emailUser, passwordUser);  
+const signInWithEmailAndPassword = () => {
+	const emailUser = textEmail.value;
+	const passwordUser = password.value;
+	loginUserWithEmail(emailUser, passwordUser);
 };
 document.getElementById('btnLogin').addEventListener('click', signInWithEmailAndPassword);
 
 //Iniciar sesión con Google
-const logInGoogle =()=>{
-  //alert("hola")
-  gmailLogIn()
+const logInGoogle = () => {
+	//alert("hola")
+	gmailLogIn()
 }
 document.getElementById('btnGmail').addEventListener('click', logInGoogle);
 //Cerrar sesión
-const logOut =() =>{
- //console.log("Ud cerro sesión")
-  signOut()
+const logOut = () => {
+	//console.log("Ud cerro sesión")
+	signOut()
 }
 document.getElementById('btnLogout').addEventListener('click', logOut);
 
 //Iniciar sesión con Facebook
-const logInFacebook = () => {    
-    facebookLogIn()
+const logInFacebook = () => {
+	facebookLogIn()
 }
-document.getElementById('btnFacebook').addEventListener('click', logInFacebook); 
+document.getElementById('btnFacebook').addEventListener('click', logInFacebook);
 
 //Iniciar sesión con Twitter
 const logInTwitter = () => {
-    twitterLogIn()
+	twitterLogIn()
 }
-document.getElementById('btnTwitter').addEventListener('click', logInTwitter); 
+document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
 
- /*-------------------------------------------------------------*/
- const savePostIntoDatabase = () => {
-    const userName = firebase.auth().currentUser.displayName;
-    const post = document.getElementById('postContent').value;
-    const photo = firebase.auth().currentUser.photoURL;
-    savePost(userName, post, photo);
+/*-------------------------------------------------------------*/
+const savePostIntoDatabase = () => {
+	const userName = firebase.auth().currentUser.displayName;
+	const post = document.getElementById('postContent').value;
+	const photo = firebase.auth().currentUser.photoURL;
+	savePost(userName, post, photo);
 }
- const savePostFromDatabase = () => {
-     readPost((post)=>{
-     document.getElementById('postPublished').innerHTML = 
-     `<div class="row">
+export const savePostFromDatabase = () => {
+	readPost((post) => {
+        //console.log(post.key)
+		document.getElementById('postPublished').innerHTML =
+			`<div class="row">
     <div class="col-12 space">
        <div class="col-2 box-img">
           <div id="namePerfil"><p>${post.val().user ? post.val().user : "Anonimo"}</p></div>
@@ -83,7 +97,7 @@ document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
                 <div class="col-2"><button class="post-icon"><i class="far fa-heart"></i></button></div>
                 <div class="col-2"><button class="post-icon"><i class="far fa-bookmark"></button></i></div>
                 <div class="col-2"><button class="post-icon"><i class="far fa-comment-dots"></i></button></div>
-                <div class="col-2"><button class="post-icon"><i class="far fa-trash-alt"></i></button></div>
+                <div class="col-2"><button id="postId${post.key}" class="delete-post"><i class="far fa-trash-alt"></i></button></div>
                 <div class="col-4"><button class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
           </div>          
        </div>
@@ -97,22 +111,27 @@ document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
     </div>
  </div>` + document.getElementById('postPublished').innerHTML;
 
-            document.getElementById('actionAnswer').addEventListener('click', ()  =>{
-                document.getElementById('especialistAnswer').classList.toggle('show');
-            });     
-     });
-     
- }
- document.getElementById('public').addEventListener('click', savePostIntoDatabase);
- 
+		document.getElementById('actionAnswer').addEventListener('click', () => {
+			document.getElementById('especialistAnswer').classList.toggle('show');
+		});
+		//Botón para borrar post
+		let deletePost = document.getElementsByClassName("delete-post");
+		for (let i = 0; i < deletePost.length; i++) {
+			deletePost[i].addEventListener("click", deleteComment)
+		}
+	});
+
+}
+document.getElementById('public').addEventListener('click', savePostIntoDatabase);
 
 //Recuperacion de contraseña
-document.getElementById("resetPassword").addEventListener("click",() => {
-    let emailUser = document.getElementById("textEmail").value;
-     firebase.auth().sendPasswordResetEmail(emailUser)
- .then(function() {
-     document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
- }).catch(error => {
-     document.getElementById('warning').innerHTML = "Ingrese su email"
- });
- })
+document.getElementById("resetPassword").addEventListener("click", () => {
+	let emailUser = document.getElementById("textEmail").value;
+	firebase.auth().sendPasswordResetEmail(emailUser)
+		.then(function() {
+			document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
+		})
+		.catch(error => {
+			document.getElementById('warning').innerHTML = "Ingrese su email"
+		});
+});
