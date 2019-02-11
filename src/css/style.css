@@ -119,7 +119,14 @@
 .sectionfooter{
     border-top: 1px #898989 solid; 
     padding: 10px 0;
-    margin-bottom: 10px;
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:30px;
+    width:100%;
+    background-color: #ffffff;
+
+     
 }
 .button-footer{
     margin:0 auto;
@@ -132,7 +139,7 @@
     display:block;
     color: #464646;
     font-size: 20px;
-    padding: 15px 0;
+    padding: 7px 0;
 }
 .section-Answer{
     background-color: #f1f1f1;
@@ -255,6 +262,8 @@
     .clearfix:after {
       clear: both;
     }
+
+    
     @media(max-width:468px){
         .box-registro{
             margin-top:30%;
