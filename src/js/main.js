@@ -11,7 +11,7 @@ import {
 import {
 	savePost,
     readPost,
-    deleteComment
+   // deleteComment
 } from '../js/data.js';
 window.onload = () => {
 		checkAuthState((user) => {
@@ -76,7 +76,7 @@ const savePostIntoDatabase = () => {
 	const photo = firebase.auth().currentUser.photoURL;
 	savePost(userName, post, photo);
 }
-export const savePostFromDatabase = () => {
+const savePostFromDatabase = () => {
 	readPost((post) => {
         //console.log(post.key)
 		document.getElementById('postPublished').innerHTML =
@@ -123,6 +123,14 @@ export const savePostFromDatabase = () => {
 
 }
 document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+
+const deleteComment = (post)=> {
+    //Variable para recuperar el id del post desde el boton
+     const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
+    //console.log(post.target)
+     firebase.database().ref('post/'+idPost).remove(); 
+     savePostFromDatabase();
+ };
 
 //Recuperacion de contraseña
 document.getElementById("resetPassword").addEventListener("click", () => {

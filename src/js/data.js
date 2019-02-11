@@ -1,5 +1,5 @@
 /* función para guardar datos (post) en la base de datos Firebase */
-import{savePostFromDatabase} from '../js/main.js'
+//import{savePostFromDatabase} from '../js/main.js'
 
 export const savePost = (userName, post, photo) => {
     /* const userID = firebase.auth().currentUser.uid; */
@@ -18,6 +18,7 @@ export const readPost = (postChange) => {
     });
    
 };
+/*
 export const deleteComment = (post)=> {
    //Variable para recuperar el id del post desde el boton
     const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
@@ -25,5 +26,5 @@ export const deleteComment = (post)=> {
     firebase.database().ref('post/'+idPost).remove(); 
     savePostFromDatabase();
 };
-
+*/
 
