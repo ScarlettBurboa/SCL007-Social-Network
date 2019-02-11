@@ -5,24 +5,25 @@ window.onload = () =>{
         if(user){
             document.getElementById('loginRegister').style.display ="none";
             document.getElementById('app').style.display = "block";
+ document.getElementById('principalImage').innerHTML = `<img class="img-profile" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="Imagen perfil usuario Logueado">`;
             document.getElementById('btnLogout').style.display = "block"; 
-            savePostFromDatabase();
+              savePostFromDatabase();
+              document.getElementById('showPerfil').style.display = "none";
          }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
             document.getElementById('btnLogout').style.display = "none";
-        }
-   
+            document.getElementById('showPerfil').style.display = "none";
+        }   
     });
 }
 //Registrar usuario (email y contraseña)
 const registerWithEmailAndPassword =()=>{
-    const emailUser = textEmail.value;
-    const passwordUser = password.value;
+    const emailUser = document.getElementById('textEmail').value;
+    const passwordUser = document.getElementById('password').value;
     registerUser(emailUser, passwordUser); 
 };
 document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
-
 //Iniciar Sesión correo y contraseña
 const signInWithEmailAndPassword = ()=>{
     const emailUser = textEmail.value;
@@ -62,15 +63,30 @@ document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
     const post = document.getElementById('postContent').value;
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo);
-}
+};
+document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+// Crea una iD única
+let createId = (function() {
+    let map = {};
+    return function(prefix) {
+        prefix = prefix || 'autoSocial';
+        map[prefix] = map[prefix] || 0;        
+        let id = prefix + '-' + map[prefix]++; 
+        // Valida :) que no exista un elemento con el mismo id :) 
+        if(document.getElementById(id)) {
+            return createId(prefix);
+        }
+        return id;
+    }
+})()
  const savePostFromDatabase = () => {
      readPost((post)=>{
      document.getElementById('postPublished').innerHTML = 
      `<div class="row">
     <div class="col-12 space">
        <div class="col-2 box-img">
-          <div id="namePerfil"><p>${post.val().user ? post.val().user : "Anonimo"}</p></div>
-           <div id="imagenPerfil"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
+          <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p></div>
+           <div id="${createId('imageUser')}"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
         </div>
        <div class="col-9 question-published clearfix">
           <div class="row">
@@ -80,30 +96,23 @@ document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
              </div>
           </div>
           <div class="row icon-group">            
-                <div class="col-2"><button class="post-icon"><i class="far fa-heart"></i></button></div>
-                <div class="col-2"><button class="post-icon"><i class="far fa-bookmark"></button></i></div>
-                <div class="col-2"><button class="post-icon"><i class="far fa-comment-dots"></i></button></div>
-                <div class="col-6"><button class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
+                <div class="col-2"><button id="${createId('likePost')}" class="post-icon"><div id="${createId('like')}" class="like"></div></button></div>
+                <div class="col-2"><button id="${createId('savePost')}" class="post-icon"><i class="far fa-bookmark"></button></i></div>
+                <div class="col-2"><button id="${createId('commentPost')}" class="post-icon"><i class="far fa-comment-dots"></i></button></div>
+                <div class="col-6"><button id="${createId('ReportPost')}" class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
           </div>          
        </div>
        <div class="col-9 float-right">
-             <button id="actionAnswer" class="col-12 btnAnswer">Ver respuesta</button>
+             <button id="${createId('ReportPost')}" class="col-12 btnAnswer">Ver respuesta</button>
              <div class="hide section-Answer" id ="especialistAnswer">
              <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
              <p class="answer-especialist" id="answerEspecialist">LGBT es una sigla para abreviar algunas categorías de la Diversidad Sexual por las diferentes orientaciones sexuales e identidades de género: L de Lesbiana, G de Gay, B de Bisexual y T de Trans.<p>
              </div>
        </div>
     </div>
- </div>` + document.getElementById('postPublished').innerHTML;
-
-            document.getElementById('actionAnswer').addEventListener('click', ()  =>{
-                document.getElementById('especialistAnswer').classList.toggle('show');
-            });     
+ </div>` + document.getElementById('postPublished').innerHTML;        
      });
-     
- }
- document.getElementById('public').addEventListener('click', savePostIntoDatabase);
- 
+ };
 
 //Recuperacion de contraseña
 document.getElementById("resetPassword").addEventListener("click",() => {
@@ -114,4 +123,29 @@ document.getElementById("resetPassword").addEventListener("click",() => {
  }).catch(error => {
      document.getElementById('warning').innerHTML = "Ingrese su email"
  });
- })
+ });
+ /**PERFIL ACTION*/
+ document.getElementById('perfilUser').addEventListener('click', ()=>{
+     document.getElementById('showPerfil').style.display = "block";
+     perfilNameShow();
+     document.getElementById('app').style.display = "none";
+     document.getElementById('btnLogout').style.display = "none";
+     document.getElementById('savedPerfil').style.display ="none";
+ });
+ document.getElementById('backToApp').addEventListener('click', () =>{
+    document.getElementById('showPerfil').style.display = "none";
+    document.getElementById('app').style.display = "block";
+    document.getElementById('btnLogout').style.display = "block";
+ });
+ const perfilNameShow = () => {
+        document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
+        <div class="col-5"><img class="perfil-image" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="imagen usuario"></div>`
+};
+document.getElementById('myPost').addEventListener('click', () =>{
+    document.getElementById('publishedPerfil').style.display ="block";
+    document.getElementById('savedPerfil').style.display ="none";
+ });
+ document.getElementById('mySaved').addEventListener('click', () =>{
+    document.getElementById('publishedPerfil').style.display ="none";
+    document.getElementById('savedPerfil').style.display ="block";
+}); 
