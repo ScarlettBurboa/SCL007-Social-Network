@@ -61,7 +61,12 @@ document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
     const photo = firebase.auth().currentUser.photoURL;
-    savePost(userName, post, photo);
+    let miFechaActual = new Date();
+    let year = miFechaActual.getFullYear();
+    let month = parseInt(miFechaActual.getMonth()) + 1;
+    let day = miFechaActual.getDate();
+    let datePost = `${day}/${month}/${year}`;
+    savePost(userName, post, photo, datePost);
 }
  const savePostFromDatabase = () => {
      readPost((post)=>{
@@ -75,7 +80,7 @@ document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
        <div class="col-9 question-published clearfix">
           <div class="row">
              <div class="col-12">
-                <p class="caja-texto">${post.val().pospublic}
+                <p class="caja-texto">${post.val().createdDate}${post.val().pospublic}
                 </p>
              </div>
           </div>
