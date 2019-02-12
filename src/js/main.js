@@ -70,6 +70,7 @@ let miFechaActual = new Date();
    let year = miFechaActual.getFullYear();
    let month = parseInt(miFechaActual.getMonth()) + 1;
    let day = miFechaActual.getDate();
+   let datePost = `${day}/${month}/${year}`;
 const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
@@ -163,14 +164,13 @@ document.getElementById('myPost').addEventListener('click', () =>{
     document.getElementById('publishedPerfil').style.display ="none";
     document.getElementById('savedPerfil').style.display ="block";
 }); 
-const savePostFromDatabaseUser =() =>{
+/* const savePostFromDatabaseUser =() =>{
     readPostUser((postUser)=>{ 
         document.getElementById('publishedPerfil').innerHTML = 
         `<div class="row">
         <div class="col-12 space">
            <div class="col-2 box-img">
-              <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p></div>
-              <p>${post.val().createdDate}</p></div>
+              <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p><p>${post.val().createdDate}</p></div>              
                <div id=""><img class="img-profile" src=${postUser.val().userphoto ? postUser.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
             </div>
            <div class="col-9 question-published clearfix">
@@ -194,5 +194,5 @@ const savePostFromDatabaseUser =() =>{
         </div>
      </div>` + document.getElementById('publishedPerfil').innerHTML;        
         });
-};
+}; */
 
