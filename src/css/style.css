@@ -160,7 +160,7 @@ header{
     background: #fff;
     margin-top: 0%;
     width:100%;
-    border-bottom:#898989 1px solid;
+    border-bottom:#898989 2px solid;
 }
 .first{
     width:100%;
@@ -186,9 +186,13 @@ header{
     float:right;
 }
 .sectionfooter{
-    border-top: 1px #898989 solid; 
-    padding: 10px 0;
-    margin-bottom: 10px;
+    border-top: 2px #898989 solid; 
+    padding: 8px 0;
+    position: fixed;
+    bottom:0;
+    z-index: 9999;
+    width:100%;
+    background-color: #fff;
 }
 .button-footer{
     margin:0 auto;
