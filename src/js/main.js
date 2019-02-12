@@ -1,5 +1,5 @@
 import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import {savePost, readPost, savePostUser, readPostUser} from '../js/data.js';
+import {savePost, readPost, readPostUser} from '../js/data.js';
 window.onload = () =>{     
      checkAuthState((user) => {
         if(user){
@@ -66,14 +66,7 @@ document.getElementById("resetPassword").addEventListener("click", () => {
     document.getElementById('warning').innerHTML = "Ingrese su email"
 });
 });
-/*-------------------------------------------------------------*/
-const deleteComment = (post)=> {
-    //Variable para recuperar el id del post desde el boton
-     const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
-    //console.log(post.target)
-     firebase.database().ref('post/'+idPost).remove(); 
-     savePostFromDatabase();
- };
+
 /*-------------------------------------------------------------*/
 //Crear fecha actual
 let miFechaActual = new Date();
@@ -86,7 +79,7 @@ const savePostIntoDatabase = () => {
     const post = document.getElementById('postContent').value;
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo, datePost);
-    savePostUser(userName, post, photo, datePost);
+  //  savePostUser(userName, post, photo, datePost);
 };
 document.getElementById('public').addEventListener('click', savePostIntoDatabase);
 // Crea una iD única
@@ -143,12 +136,13 @@ const savePostFromDatabase = () => {
      perfilNameShow();
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
-     document.getElementById('savedPerfilTotal').style.display ="none";
+     document.getElementById('savedPerfil').style.display ="none";
  });
 document.getElementById('backToApp').addEventListener('click', () =>{
    document.getElementById('showPerfilTotal').style.display = "none";
    document.getElementById('app').style.display = "block";
    document.getElementById('btnLogout').style.display = "block";
+   savePostFromDatabase(); //Se agrega para cargar la pag automatcamente
 });
 const perfilNameShow = () => {
        document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
@@ -165,7 +159,9 @@ document.getElementById('mySaved').addEventListener('click', () =>{
 }); 
 
 const savePostFromDatabaseUser =() =>{
+   document.getElementById('publishedPerfil').innerHTML = ""; //Limpiando la pagina para que no se repitan los post en perfil de usuario
     readPostUser((postUser)=>{ 
+      // console.log(postUser.key)
         document.getElementById('publishedPerfil').innerHTML = 
         `<div class="row">
         <div class="col-12 space">
@@ -181,7 +177,7 @@ const savePostFromDatabaseUser =() =>{
               </div>
               <div class="row icon-group">            
                     <div class="col-6"><button id="" class="post-icon">EDITAR</button></div>
-                    <div class="col-6"><button id="" class="post-icon">BORRAR</button></div>
+                    <div class="col-6"><button id="postId${postUser.key}" class="delete-post">BORRAR</button></div>
               </div>          
            </div>
            <div class="col-9 float-right">
@@ -192,7 +188,25 @@ const savePostFromDatabaseUser =() =>{
                  </div>
            </div>
         </div>
-     </div>` + document.getElementById('publishedPerfil').innerHTML;        
-        });
+     </div>` + document.getElementById('publishedPerfil').innerHTML; 
+
+     let deletePost = document.getElementsByClassName('delete-post');
+     for(let i = 0; i< deletePost.length; i++){
+        deletePost[i].addEventListener('click', deleteComment);
+      }
+   });
+   
 };
 
+/*----------------------------------------------------------------------------------------------------------------------*/
+const deleteComment = (post)=> {
+   //Variable para recuperar el id del post desde el boton
+   const userId = firebase.auth().currentUser.uid;
+     const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
+    //console.log(post.target)
+    console.log(idPost)
+     firebase.database().ref('post/'+idPost).remove(); 
+     firebase.database().ref('postUser/'+userId+'/'+idPost).remove(); 
+   
+    savePostFromDatabaseUser();
+ };
