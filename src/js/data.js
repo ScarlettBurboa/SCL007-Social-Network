@@ -4,7 +4,8 @@ export const savePost = (userName, post, photo) => {
     firebase.database().ref(`post/${keyPost}/`).set({
         user: userName,
         pospublic: post,
-        userphoto: photo
+        userphoto: photo,
+        createdDate: datePost
     });
     };
 export const readPost = (postChange) =>{
@@ -19,7 +20,8 @@ export const savePostUser = (userName, post, photo) => {
        firebase.database().ref(`postUser/${userId}/${keyPost}/`).set({
            user : userName, 
            pospublic : post, 
-           userphoto : photo
+           userphoto : photo,
+          createdDate: datePost
        });
        };
 export const readPostUser = (postChange) =>{
@@ -29,3 +31,4 @@ export const readPostUser = (postChange) =>{
            postChange(postUser);
        });
    };
+

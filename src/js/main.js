@@ -21,7 +21,7 @@ window.onload = () =>{
 const registerWithEmailAndPassword =()=>{
     const emailUser = document.getElementById('textEmail').value;
     const passwordUser = document.getElementById('password').value;
-    registerUser(emailUser, passwordUser); 
+
 };
 document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
 //Iniciar Sesión correo y contraseña
@@ -47,7 +47,7 @@ document.getElementById('btnLogout').addEventListener('click', logOut);
 
 //Iniciar sesión con Facebook
 const logInFacebook = () => {
-	facebookLogIn()
+  facebookLogIn()
 }
 document.getElementById('btnFacebook').addEventListener('click', logInFacebook);
 
@@ -64,15 +64,22 @@ const deleteComment = (post)=> {
      firebase.database().ref('post/'+idPost).remove(); 
      savePostFromDatabase();
  };
- /*-------------------------------------------------------------*/
- const savePostIntoDatabase = () => {
+/*-------------------------------------------------------------*/
+//Crear fecha actual
+let miFechaActual = new Date();
+let year = miFechaActual.getFullYear();
+let month = parseInt(miFechaActual.getMonth()) + 1;
+let day = miFechaActual.getDate();
+
+const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
     const photo = firebase.auth().currentUser.photoURL;
-    savePost(userName, post, photo);
-    savePostUser(userName, post, photo);
+    savePost(userName, post, photo, datePost);
+    savePostUser(userName, post, photo, datePost);
 };
 document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+
 // Crea una iD única
 let createId = (function() {
     let map = {};
@@ -94,6 +101,7 @@ const savePostFromDatabase = () => {
    <div class="col-12 space">
       <div class="col-2 box-img">
          <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p></div>
+          <p>${post.val().createdDate}</p></div>
           <div id="${createId('imageUser')}"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
        </div>
       <div class="col-9 question-published clearfix">
@@ -122,7 +130,7 @@ const savePostFromDatabase = () => {
     });
 };
 //Recuperacion de contraseña
-document.getElementById("resetPassword").addEventListener("click",() => {
+document.getElementById("resetPassword").addEventListener("click", () => {
     let emailUser = document.getElementById("textEmail").value;
      firebase.auth().sendPasswordResetEmail(emailUser)
  .then(function() {
@@ -165,6 +173,7 @@ const savePostFromDatabaseUser =() =>{
         <div class="col-12 space">
            <div class="col-2 box-img">
               <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p></div>
+              <p>${post.val().createdDate}</p></div>
                <div id=""><img class="img-profile" src=${postUser.val().userphoto ? postUser.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
             </div>
            <div class="col-9 question-published clearfix">
@@ -189,3 +198,4 @@ const savePostFromDatabaseUser =() =>{
      </div>` + document.getElementById('publishedPerfil').innerHTML;        
         });
 };
+
