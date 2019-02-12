@@ -43,9 +43,9 @@
          </div>
       </main>         
         <!-- aqui comienza contenido para los usuarios logueados -->
-      <div id ="showPerfil" class="perfil">
-           <div class="container">
-              <div class="row information-perfil">
+      <div id ="showPerfilTotal" class="perfil4">
+            <div class="container">
+               <div class="row information-perfil">
                  <div class="col-4"><button id="backToApp" class="back"><i class="fas fa-arrow-left"></i></button></div>
                  <div class="col-8"><div id="perfilName"></div></div>
                  <div class="col-12 line-separator-white">
@@ -54,17 +54,17 @@
                        <div class="col-6"><button id="mySaved">Mis Elementos Guardados</button></div>
                     </div>
                  </div>
-              </div>
-              <div class="row">
+               </div>
+               <div class="row">
                  <div class="published-saved" id="publishedPerfil" class="col-12"></div>
                  <div class="published-saved" id="savedPerfil" class="col-12"></div>
-           </div>
-   </div>
-   </div>
+               </div>
+            </div>
+      </div>
    <section id="app" class="container">
          <header class="row">
             <div class="col-12">
-               <button class="button-left" id="perfilUser"><i class="fas fa-bars"></i> Perfil</button>
+               <button class="button-left" id="perfilUserButton"><i class="fas fa-bars"></i> Perfil</button>
                <button class="button-right" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
          </header>   
          <!--  caja para postear -->
@@ -79,21 +79,8 @@
             </div>
             <button class="btnPublish btnAnswer" id="public">Publicar</button>
          </div> 
-         <!-- caja para ingresar comentarios -->
-         <div id="postPublished" class="container">
-            <div class="row icon-group">
-            
-               
-           
-         </div>
-         </div>
-         <button class="btnPublish btnAnswer" id="public">Publicar</button>
-      </div>
       <!-- caja para ingresar comentarios -->
-      <div id="postPublished" class="container">
-         <div class="row icon-group">
-
-         </div>
+      <div id="postPublished" class="container"></div>
          <footer id="footer">
             <div class="container">
                <div class="row">
@@ -106,8 +93,6 @@
          </div>
       </footer>
    </section><!--  .container -->
-
-
    <script>
       // Initialize Firebase
       const config = {

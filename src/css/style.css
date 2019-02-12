@@ -79,11 +79,17 @@
     text-align: center;
     font-size: 15px;
 }
-.perfil{
-    margin-top: -30%;
+.perfil4{    
+    width: 100%;
+    max-width: 500px;
+    display: block; 
+    margin: 0 auto;
+    margin-top:-5%;
+
 }
 .information-perfil{
     width:100%;
+    max-width:500px;
     padding: 15px 0;
     position: fixed;
     background-color: #1AA9E2;
@@ -195,6 +201,7 @@ header{
     bottom:0px;
     height:30px;
     width:100%;
+    max-width:500px;
     background-color: #ffffff;
 }
 .button-footer{

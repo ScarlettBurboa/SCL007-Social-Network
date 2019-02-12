@@ -1,11 +1,11 @@
 /* función para guardar datos (post) en la base de datos Firebase */
-export const savePost = (userName, post, photo) => {
+export const savePost = (userName, post, photo, datePost) => {
  const keyPost = firebase.database().ref('post/').child('post').push().key;    
     firebase.database().ref(`post/${keyPost}/`).set({
         user: userName,
         pospublic: post,
         userphoto: photo,
-        createdDate: datePost
+        createdDate: datePost,
     });
     };
 export const readPost = (postChange) =>{
@@ -14,14 +14,14 @@ export const readPost = (postChange) =>{
         postChange(post);
     });   
 };
-export const savePostUser = (userName, post, photo) => {
+export const savePostUser = (userName, post, photo, datePost) => {
     const userId = firebase.auth().currentUser.uid;
     const keyPost = firebase.database().ref('postUser/').child('postUser').push().key;    
        firebase.database().ref(`postUser/${userId}/${keyPost}/`).set({
            user : userName, 
            pospublic : post, 
            userphoto : photo,
-          createdDate: datePost
+          createdDate: datePost,
        });
        };
 export const readPostUser = (postChange) =>{
