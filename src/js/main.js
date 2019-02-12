@@ -7,13 +7,13 @@ window.onload = () =>{
             document.getElementById('app').style.display = "block";
             document.getElementById('principalImage').innerHTML = `<img class="img-profile" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="Imagen perfil usuario Logueado">`;
             document.getElementById('btnLogout').style.display = "block"; 
-              savePostFromDatabase();
-              document.getElementById('showPerfil').style.display = "none";
+            savePostFromDatabase();
+            document.getElementById('showPerfilTotal').style.display = "none";
          }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
             document.getElementById('btnLogout').style.display = "none";
-            document.getElementById('showPerfil').style.display = "none";
+            document.getElementById('showPerfilTotal').style.display = "none";
         }   
     });
 }
@@ -56,6 +56,16 @@ const logInTwitter = () => {
 	twitterLogIn()
 }
 document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
+//Recuperacion de contraseña
+document.getElementById("resetPassword").addEventListener("click", () => {
+   let emailUser = document.getElementById("textEmail").value;
+    firebase.auth().sendPasswordResetEmail(emailUser)
+.then(function() {
+    document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
+}).catch(error => {
+    document.getElementById('warning').innerHTML = "Ingrese su email"
+});
+});
 /*-------------------------------------------------------------*/
 const deleteComment = (post)=> {
     //Variable para recuperar el id del post desde el boton
@@ -127,50 +137,40 @@ const savePostFromDatabase = () => {
 </div>` + document.getElementById('postPublished').innerHTML;        
     });
 };
-//Recuperacion de contraseña
-document.getElementById("resetPassword").addEventListener("click", () => {
-    let emailUser = document.getElementById("textEmail").value;
-     firebase.auth().sendPasswordResetEmail(emailUser)
- .then(function() {
-     document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
- }).catch(error => {
-     document.getElementById('warning').innerHTML = "Ingrese su email"
- });
- });
  /**PERFIL ACTION*/
- document.getElementById('perfilUser').addEventListener('click', ()=>{
-     document.getElementById('showPerfil').style.display = "block";
+ document.getElementById('perfilUserButton').addEventListener('click', ()=>{
+     document.getElementById('showPerfilTotal').style.display = "block";
      perfilNameShow();
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
-     document.getElementById('savedPerfil').style.display ="none";
+     document.getElementById('savedPerfilTotal').style.display ="none";
  });
-
- document.getElementById('backToApp').addEventListener('click', () =>{
-    document.getElementById('showPerfil').style.display = "none";
-    document.getElementById('app').style.display = "block";
-    document.getElementById('btnLogout').style.display = "block";
- });
- const perfilNameShow = () => {
-        document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
-        <div class="col-5"><img class="perfil-image" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="imagen usuario"></div>`
+document.getElementById('backToApp').addEventListener('click', () =>{
+   document.getElementById('showPerfilTotal').style.display = "none";
+   document.getElementById('app').style.display = "block";
+   document.getElementById('btnLogout').style.display = "block";
+});
+const perfilNameShow = () => {
+       document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
+       <div class="col-5"><img class="perfil-image" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="imagen usuario"></div>`
 };
 document.getElementById('myPost').addEventListener('click', () =>{
-    document.getElementById('publishedPerfil').style.display ="block";
-    savePostFromDatabaseUser();
-    document.getElementById('savedPerfil').style.display ="none";
- });
- document.getElementById('mySaved').addEventListener('click', () =>{
-    document.getElementById('publishedPerfil').style.display ="none";
-    document.getElementById('savedPerfil').style.display ="block";
+   document.getElementById('publishedPerfil').style.display ="block";
+   savePostFromDatabaseUser();
+   document.getElementById('savedPerfil').style.display ="none";
+});
+document.getElementById('mySaved').addEventListener('click', () =>{
+   document.getElementById('publishedPerfil').style.display ="none";
+   document.getElementById('savedPerfil').style.display ="block";
 }); 
-/* const savePostFromDatabaseUser =() =>{
+
+const savePostFromDatabaseUser =() =>{
     readPostUser((postUser)=>{ 
         document.getElementById('publishedPerfil').innerHTML = 
         `<div class="row">
         <div class="col-12 space">
            <div class="col-2 box-img">
-              <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p><p>${post.val().createdDate}</p></div>              
+              <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p><p>${postUser.val().createdDate}</p></div>              
                <div id=""><img class="img-profile" src=${postUser.val().userphoto ? postUser.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
             </div>
            <div class="col-9 question-published clearfix">
@@ -194,5 +194,5 @@ document.getElementById('myPost').addEventListener('click', () =>{
         </div>
      </div>` + document.getElementById('publishedPerfil').innerHTML;        
         });
-}; */
+};
 
