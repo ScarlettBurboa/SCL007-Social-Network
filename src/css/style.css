@@ -79,6 +79,64 @@
     text-align: center;
     font-size: 15px;
 }
+.perfil{
+    margin-top: -30%;
+}
+.information-perfil{
+    width:100%;
+    padding: 15px 0;
+    position: fixed;
+    background-color: #1AA9E2;
+    z-index: 9999;
+}
+.perfil-image{
+    max-width: 40px;
+    width:100%;
+    float:right;
+    padding-right: 10px;
+}
+.perfil-name{
+    color: #fff;
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 30px;
+}
+.back{
+    background-color: transparent;
+    border:none;
+    color: #fff;
+}
+.back i{
+    border-radius: 50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+    border: 1px #fff solid;
+    color: #fff;
+    padding: 8px;
+}
+.line-separator-white{
+    margin: 10px 0;
+    width:100%;
+    height: 1px;
+    border-top: 1px solid #fff;
+}
+.menu-perfil{
+    width:100%;
+    height: 50px;
+    background-color: #1AA9E2;
+}
+.menu-perfil button{
+    color: #fff;
+    text-align: center;
+    padding: 15px 0 0 0;
+    border:none;
+    width: 100%;
+    background-color: transparent;
+}
+.published-saved{
+    margin-top: 130px;
+}
 .button-reset-password{
     background-color: transparent;
     border: none;
@@ -96,6 +154,18 @@
 .space{
     margin:8px auto;
     display: block;
+}
+header{
+    position: fixed;
+    background: #fff;
+    margin-top: 0%;
+    width:100%;
+    max-width:500px;
+    border-bottom:#898989 2px solid;
+}
+.first{
+    width:100%;
+    margin-top:60px;
 }
 .button-left i, .button-right i {
     border-radius: 50%;
@@ -117,6 +187,7 @@
     float:right;
 }
 .sectionfooter{
+
     border-top: 1px #898989 solid; 
     padding: 10px 0;
     position:fixed;
@@ -125,8 +196,6 @@
     height:30px;
     width:100%;
     background-color: #ffffff;
-
-     
 }
 .button-footer{
     margin:0 auto;
@@ -163,35 +232,31 @@
     cursor: pointer;
 }
 /* pantalla principal */
-
 /* box para hacer preguntas */
 #app{
     background-color: #ffffff;
-    }
-    
-    .box-post {
-        border: #898989 1px solid;
+    }    
+.box-post{
+        border-bottom: #898989 1px solid;
         padding: 5px;
     }
-    .img-profile {
+.img-profile{
          margin: 0 auto;
-         width: 50px;
-         
-    }
-    
-    .question {
+         width: 50px; 
+         display: block;      
+    }    
+.question{
         padding-top: 3px;
         width:100%;
     }
-    textarea.answer {
-        margin-top: 5px;
+textarea.answer{
+       margin-top: 5px;
         height: 35px;
         width:90%;
         padding: 5px 10px;
         border-radius: 50px;
-    }
-    
-    textarea.answer::placeholder {
+}    
+textarea.answer::placeholder{
     padding: 5px;
     text-align: center;
     }
@@ -213,27 +278,34 @@
     .btnPublish {
         float: right;
         margin-right: 20px;
-    }
-    
-    /* box para ver posteos */
-    
+    }    
+    /* box para ver posteos */    
     #postPublished.container {
         padding-top: 5%;
         width: 93%;
-    }
-    
+    }    
     .question-published{
           float: right;
     }
     .icon-group {
         border-top: #898989 1px solid;
         padding: 10px 0;
-    }
-    
+    }    
     .float-right {
         float: right;
     }
-    
+    .like::before{
+        font-family: "Font Awesome 5 Free"; 
+        font-weight: 400;
+        content: "\f004";
+        color: red;
+    }
+    .liked::before{
+        font-family: "Font Awesome 5 Free"; 
+        font-weight: 900;
+        content: "\f004";
+        color: red;
+    }
     .caja-texto {
         min-height: 65px;
         max-height: 65px;
@@ -251,17 +323,14 @@
         border-radius:20px;
         border: 0.5px solid #898989;
         box-sizing: border-box;
-    } 
-  
-    
+    }    
     .clearfix:before,
     .clearfix:after {
       content: " ";
       /* 1 */
       display: table;
       /* 2 */
-    }
-    
+    }    
     .clearfix:after {
       clear: both;
     }
@@ -272,7 +341,7 @@
             margin-top:30%;
         }
         #app{
-            margin-top: -20%;
+            margin-top: -30%;
 
         }
     }
@@ -282,5 +351,7 @@
             margin: 0 auto;
             display:block;
             max-width: 500px;
+            margin-top: -5%;
         }
     }
+    
