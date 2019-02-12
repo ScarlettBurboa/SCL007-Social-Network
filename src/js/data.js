@@ -1,30 +1,31 @@
 /* función para guardar datos (post) en la base de datos Firebase */
-//import{savePostFromDatabase} from '../js/main.js'
-
 export const savePost = (userName, post, photo) => {
-    /* const userID = firebase.auth().currentUser.uid; */
-    const keyPost = firebase.database().ref('post/').child('post').push().key;
+ const keyPost = firebase.database().ref('post/').child('post').push().key;    
     firebase.database().ref(`post/${keyPost}/`).set({
         user: userName,
         pospublic: post,
         userphoto: photo
     });
-};
-export const readPost = (postChange) => {
-    /* const userID = firebase.auth().currentUser.uid; */
+    };
+export const readPost = (postChange) =>{
     const postReference = firebase.database().ref('post/');
     postReference.on('child_added', (post) => {
         postChange(post);
-    });
-   
+    });   
 };
-/*
-export const deleteComment = (post)=> {
-   //Variable para recuperar el id del post desde el boton
-    const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
-   //console.log(post.target)
-    firebase.database().ref('post/'+idPost).remove(); 
-    savePostFromDatabase();
-};
-*/
-
+export const savePostUser = (userName, post, photo) => {
+    const userId = firebase.auth().currentUser.uid;
+    const keyPost = firebase.database().ref('postUser/').child('postUser').push().key;    
+       firebase.database().ref(`postUser/${userId}/${keyPost}/`).set({
+           user : userName, 
+           pospublic : post, 
+           userphoto : photo
+       });
+       };
+export const readPostUser = (postChange) =>{
+    const userId = firebase.auth().currentUser.uid;
+    const postReferenceread = firebase.database().ref(`postUser/${userId}/`);
+       postReferenceread.on('child_added', (postUser) =>{
+           postChange(postUser);
+       });
+   };
