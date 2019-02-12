@@ -160,6 +160,7 @@ header{
     background: #fff;
     margin-top: 0%;
     width:100%;
+    max-width:500px;
     border-bottom:#898989 2px solid;
 }
 .first{
@@ -188,11 +189,6 @@ header{
 .sectionfooter{
     border-top: 2px #898989 solid; 
     padding: 8px 0;
-    position: fixed;
-    bottom:0;
-    z-index: 9999;
-    width:100%;
-    background-color: #fff;
 }
 .button-footer{
     margin:0 auto;
@@ -342,5 +338,7 @@ textarea.answer::placeholder{
             margin: 0 auto;
             display:block;
             max-width: 500px;
+            margin-top: -5%;
         }
     }
+    
