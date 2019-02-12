@@ -25,38 +25,45 @@ const registerWithEmailAndPassword =()=>{
 };
 document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
 //Iniciar Sesión correo y contraseña
-const signInWithEmailAndPassword = ()=>{
-    const emailUser = textEmail.value;
-    const passwordUser = password.value;
-    loginUserWithEmail(emailUser, passwordUser);  
+const signInWithEmailAndPassword = () => {
+	const emailUser = textEmail.value;
+	const passwordUser = password.value;
+	loginUserWithEmail(emailUser, passwordUser);
 };
 document.getElementById('btnLogin').addEventListener('click', signInWithEmailAndPassword);
 
 //Iniciar sesión con Google
-const logInGoogle =()=>{
-  //alert("hola")
-  gmailLogIn()
+const logInGoogle = () => {
+	//alert("hola")
+	gmailLogIn()
 }
 document.getElementById('btnGmail').addEventListener('click', logInGoogle);
 //Cerrar sesión
-const logOut =() =>{
- //console.log("Ud cerro sesión")
-  signOut()
+const logOut = () => {
+	//console.log("Ud cerro sesión")
+	signOut()
 }
 document.getElementById('btnLogout').addEventListener('click', logOut);
 
 //Iniciar sesión con Facebook
-const logInFacebook = () => {    
-    facebookLogIn()
+const logInFacebook = () => {
+	facebookLogIn()
 }
-document.getElementById('btnFacebook').addEventListener('click', logInFacebook); 
+document.getElementById('btnFacebook').addEventListener('click', logInFacebook);
 
 //Iniciar sesión con Twitter
 const logInTwitter = () => {
-    twitterLogIn()
+	twitterLogIn()
 }
-document.getElementById('btnTwitter').addEventListener('click', logInTwitter); 
-
+document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
+/*-------------------------------------------------------------*/
+const deleteComment = (post)=> {
+    //Variable para recuperar el id del post desde el boton
+     const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
+    //console.log(post.target)
+     firebase.database().ref('post/'+idPost).remove(); 
+     savePostFromDatabase();
+ };
  /*-------------------------------------------------------------*/
  const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
@@ -182,4 +189,3 @@ const savePostFromDatabaseUser =() =>{
      </div>` + document.getElementById('publishedPerfil').innerHTML;        
         });
 };
-
