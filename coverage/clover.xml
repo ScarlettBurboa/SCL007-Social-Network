@@ -1,18 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1548874496893" clover="3.2.0">
-  <project timestamp="1548874496893" name="All files">
-    <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2" elements="13" coveredelements="11" complexity="0" loc="9" ncloc="9" packages="1" files="1" classes="1"/>
-    <file name="app.js" path="/home/fabian/Projects/Clases/2019-TallerComenzarProyecto/src/js/app.js">
-      <metrics statements="9" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="2" coveredmethods="2"/>
+<coverage generated="1549979776336" clover="3.2.0">
+  <project timestamp="1549979776337" name="All files">
+    <metrics statements="47" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="22" coveredmethods="1" elements="71" coveredelements="9" complexity="0" loc="47" ncloc="47" packages="1" files="1" classes="1"/>
+    <file name="auth.js" path="/home/laboratoriad309/Documentos/SCL007-Social-Network/src/js/auth.js">
+      <metrics statements="47" coveredstatements="8" conditionals="2" coveredconditionals="0" methods="22" coveredmethods="1"/>
       <line num="1" count="1" type="stmt"/>
-      <line num="2" count="1" type="stmt"/>
-      <line num="3" count="1" type="stmt"/>
-      <line num="6" count="1" type="stmt"/>
-      <line num="7" count="1" type="stmt"/>
-      <line num="13" count="1" type="cond" truecount="1" falsecount="1"/>
-      <line num="14" count="0" type="stmt"/>
-      <line num="17" count="1" type="stmt"/>
-      <line num="18" count="1" type="stmt"/>
+      <line num="2" count="0" type="stmt"/>
+      <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+      <line num="4" count="0" type="stmt"/>
+      <line num="5" count="0" type="stmt"/>
+      <line num="7" count="0" type="stmt"/>
+      <line num="8" count="0" type="stmt"/>
+      <line num="12" count="1" type="stmt"/>
+      <line num="13" count="1" type="stmt"/>
+      <line num="15" count="0" type="stmt"/>
+      <line num="17" count="0" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
+      <line num="20" count="0" type="stmt"/>
+      <line num="21" count="0" type="stmt"/>
+      <line num="23" count="1" type="stmt"/>
+      <line num="24" count="0" type="stmt"/>
+      <line num="32" count="1" type="stmt"/>
+      <line num="33" count="0" type="stmt"/>
+      <line num="34" count="0" type="stmt"/>
+      <line num="36" count="0" type="stmt"/>
+      <line num="38" count="0" type="stmt"/>
+      <line num="42" count="0" type="stmt"/>
+      <line num="43" count="0" type="stmt"/>
+      <line num="45" count="0" type="stmt"/>
+      <line num="47" count="0" type="stmt"/>
+      <line num="52" count="1" type="stmt"/>
+      <line num="53" count="0" type="stmt"/>
+      <line num="54" count="0" type="stmt"/>
+      <line num="56" count="0" type="stmt"/>
+      <line num="58" count="0" type="stmt"/>
+      <line num="62" count="0" type="stmt"/>
+      <line num="63" count="0" type="stmt"/>
+      <line num="65" count="0" type="stmt"/>
+      <line num="67" count="0" type="stmt"/>
+      <line num="71" count="1" type="stmt"/>
+      <line num="72" count="0" type="stmt"/>
+      <line num="73" count="0" type="stmt"/>
+      <line num="76" count="0" type="stmt"/>
+      <line num="77" count="0" type="stmt"/>
+      <line num="79" count="0" type="stmt"/>
+      <line num="83" count="0" type="stmt"/>
+      <line num="84" count="0" type="stmt"/>
+      <line num="86" count="0" type="stmt"/>
+      <line num="88" count="0" type="stmt"/>
+      <line num="94" count="0" type="stmt"/>
+      <line num="97" count="0" type="stmt"/>
+      <line num="100" count="0" type="stmt"/>
     </file>
   </project>
 </coverage>
