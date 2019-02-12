@@ -21,7 +21,7 @@ window.onload = () =>{
 const registerWithEmailAndPassword =()=>{
     const emailUser = document.getElementById('textEmail').value;
     const passwordUser = document.getElementById('password').value;
-
+    registerUser(emailUser, passwordUser); 
 };
 document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
 //Iniciar Sesión correo y contraseña
@@ -67,10 +67,9 @@ const deleteComment = (post)=> {
 /*-------------------------------------------------------------*/
 //Crear fecha actual
 let miFechaActual = new Date();
-let year = miFechaActual.getFullYear();
-let month = parseInt(miFechaActual.getMonth()) + 1;
-let day = miFechaActual.getDate();
-
+   let year = miFechaActual.getFullYear();
+   let month = parseInt(miFechaActual.getMonth()) + 1;
+   let day = miFechaActual.getDate();
 const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
@@ -79,7 +78,6 @@ const savePostIntoDatabase = () => {
     savePostUser(userName, post, photo, datePost);
 };
 document.getElementById('public').addEventListener('click', savePostIntoDatabase);
-
 // Crea una iD única
 let createId = (function() {
     let map = {};
@@ -100,9 +98,8 @@ const savePostFromDatabase = () => {
     `<div class="row">
    <div class="col-12 space">
       <div class="col-2 box-img">
-         <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p></div>
-          <p>${post.val().createdDate}</p></div>
-          <div id="${createId('imageUser')}"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
+         <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p><p>${post.val().createdDate}</p></div>
+         <div id="${createId('imageUser')}"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
        </div>
       <div class="col-9 question-published clearfix">
          <div class="row">
