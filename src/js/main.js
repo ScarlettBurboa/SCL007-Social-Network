@@ -101,16 +101,16 @@ let createId = (function() {
 const savePostFromDatabase = () => {
     readPost((post)=>{
     document.getElementById('postPublished').innerHTML = 
-    `<div class="row">
-   <div class="col-12 space">
+    `<div class="row space">
+   <div class="col-12">
       <div class="col-2 box-img">
          <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p><p>${post.val().createdDate}</p></div>
          <div id="${createId('imageUser')}"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
        </div>
       <div class="col-9 question-published clearfix">
          <div class="row">
-            <div class="col-12">
-               <p class="caja-texto">${post.val().pospublic}
+            <div class="col-12 post">
+               <p class="text-post">${post.val().pospublic}
                </p>
             </div>
          </div>
