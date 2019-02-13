@@ -1,105 +1,117 @@
-import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import {savePost, readPost, readPostUser} from '../js/data.js';
-window.onload = () =>{     
-     checkAuthState((user) => {
-        if(user){
-            document.getElementById('loginRegister').style.display ="none";
-            document.getElementById('app').style.display = "block";
-            document.getElementById('principalImage').innerHTML = `<img class="img-profile" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="Imagen perfil usuario Logueado">`;
-            document.getElementById('btnLogout').style.display = "block"; 
-            savePostFromDatabase();
-            document.getElementById('showPerfilTotal').style.display = "none";
-         }else{
-            document.getElementById('loginRegister').style.display ="block";
-            document.getElementById('app').style.display = "none";
-            document.getElementById('btnLogout').style.display = "none";
-            document.getElementById('showPerfilTotal').style.display = "none";
-        }   
-    });
+import {
+   checkAuthState,
+   registerUser,
+   gmailLogIn,
+   signOut,
+   loginUserWithEmail,
+   facebookLogIn,
+   twitterLogIn
+} from '../js/auth.js';
+import {
+   savePost,
+   readPost,
+   readPostUser
+} from '../js/data.js';
+window.onload = () => {
+   checkAuthState((user) => {
+      if (user) {
+         document.getElementById('loginRegister').style.display = "none";
+         document.getElementById('app').style.display = "block";
+         document.getElementById('principalImage').innerHTML = `<img class="img-profile" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="Imagen perfil usuario Logueado">`;
+         document.getElementById('btnLogout').style.display = "block";
+         savePostFromDatabase();
+         document.getElementById('showPerfilTotal').style.display = "none";
+      } else {
+         document.getElementById('loginRegister').style.display = "block";
+         document.getElementById('app').style.display = "none";
+         document.getElementById('btnLogout').style.display = "none";
+         document.getElementById('showPerfilTotal').style.display = "none";
+      }
+   });
 }
 //Registrar usuario (email y contraseña)
-const registerWithEmailAndPassword =()=>{
-    const emailUser = document.getElementById('textEmail').value;
-    const passwordUser = document.getElementById('password').value;
-    registerUser(emailUser, passwordUser); 
+const registerWithEmailAndPassword = () => {
+   const emailUser = document.getElementById('textEmail').value;
+   const passwordUser = document.getElementById('password').value;
+   registerUser(emailUser, passwordUser);
 };
 document.getElementById('btnSignUp').addEventListener('click', registerWithEmailAndPassword);
 //Iniciar Sesión correo y contraseña
 const signInWithEmailAndPassword = () => {
-	const emailUser = textEmail.value;
-	const passwordUser = password.value;
-	loginUserWithEmail(emailUser, passwordUser);
+   const emailUser = textEmail.value;
+   const passwordUser = password.value;
+   loginUserWithEmail(emailUser, passwordUser);
 };
 document.getElementById('btnLogin').addEventListener('click', signInWithEmailAndPassword);
 
 //Iniciar sesión con Google
 const logInGoogle = () => {
-	//alert("hola")
-	gmailLogIn()
+   //alert("hola")
+   gmailLogIn()
 }
 document.getElementById('btnGmail').addEventListener('click', logInGoogle);
 //Cerrar sesión
 const logOut = () => {
-	//console.log("Ud cerro sesión")
-	signOut()
+   //console.log("Ud cerro sesión")
+   signOut()
 }
 document.getElementById('btnLogout').addEventListener('click', logOut);
 
 //Iniciar sesión con Facebook
 const logInFacebook = () => {
-  facebookLogIn()
+   facebookLogIn()
 }
 document.getElementById('btnFacebook').addEventListener('click', logInFacebook);
 
 //Iniciar sesión con Twitter
 const logInTwitter = () => {
-	twitterLogIn()
+   twitterLogIn()
 }
 document.getElementById('btnTwitter').addEventListener('click', logInTwitter);
 //Recuperacion de contraseña
 document.getElementById("resetPassword").addEventListener("click", () => {
    let emailUser = document.getElementById("textEmail").value;
-    firebase.auth().sendPasswordResetEmail(emailUser)
-.then(function() {
-    document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
-}).catch(error => {
-    document.getElementById('warning').innerHTML = "Ingrese su email"
-});
+   firebase.auth().sendPasswordResetEmail(emailUser)
+      .then(function () {
+         document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
+      }).catch(error => {
+         document.getElementById('warning').innerHTML = "Ingrese su email"
+      });
 });
 
 /*-------------------------------------------------------------*/
 //Crear fecha actual
 let miFechaActual = new Date();
-   let year = miFechaActual.getFullYear();
-   let month = parseInt(miFechaActual.getMonth()) + 1;
-   let day = miFechaActual.getDate();
-   let datePost = `${day}/${month}/${year}`;
+let year = miFechaActual.getFullYear();
+let month = parseInt(miFechaActual.getMonth()) + 1;
+let day = miFechaActual.getDate();
+let datePost = `${day}/${month}/${year}`;
 const savePostIntoDatabase = () => {
-    const userName = firebase.auth().currentUser.displayName;
-    const post = document.getElementById('postContent').value;
-    const photo = firebase.auth().currentUser.photoURL;
-    savePost(userName, post, photo, datePost);
-  //  savePostUser(userName, post, photo, datePost);
+   const userName = firebase.auth().currentUser.displayName;
+   const post = document.getElementById('postContent').value;
+   const photo = firebase.auth().currentUser.photoURL;
+   savePost(userName, post, photo, datePost);
+   //  savePostUser(userName, post, photo, datePost);
 };
 document.getElementById('public').addEventListener('click', savePostIntoDatabase);
 // Crea una iD única
-let createId = (function() {
-    let map = {};
-    return function(prefix) {
-        prefix = prefix || 'autoSocial';
-        map[prefix] = map[prefix] || 0;        
-        let id = prefix + '-' + map[prefix]++; 
-        // Valida :) que no exista un elemento con el mismo id :) 
-        if(document.getElementById(id)) {
-            return createId(prefix);
-        }
-        return id;
-    }
+let createId = (function () {
+   let map = {};
+   return function (prefix) {
+      prefix = prefix || 'autoSocial';
+      map[prefix] = map[prefix] || 0;
+      let id = prefix + '-' + map[prefix]++;
+      // Valida :) que no exista un elemento con el mismo id :) 
+      if (document.getElementById(id)) {
+         return createId(prefix);
+      }
+      return id;
+   }
 })()
 const savePostFromDatabase = () => {
-    readPost((post)=>{
-    document.getElementById('postPublished').innerHTML = 
-    `<div class="row">
+   readPost((post) => {
+      document.getElementById('postPublished').innerHTML =
+         `<div class="row">
    <div class="col-12 space">
       <div class="col-2 box-img">
          <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p><p>${post.val().createdDate}</p></div>
@@ -127,43 +139,43 @@ const savePostFromDatabase = () => {
             </div>
       </div>
    </div>
-</div>` + document.getElementById('postPublished').innerHTML;        
-    });
+</div>` + document.getElementById('postPublished').innerHTML;
+   });
 };
- /**PERFIL ACTION*/
- document.getElementById('perfilUserButton').addEventListener('click', ()=>{
-     document.getElementById('showPerfilTotal').style.display = "block";
-     perfilNameShow();
-     document.getElementById('app').style.display = "none";
-     document.getElementById('btnLogout').style.display = "none";
-     document.getElementById('savedPerfil').style.display ="none";
- });
-document.getElementById('backToApp').addEventListener('click', () =>{
+/**PERFIL ACTION*/
+document.getElementById('perfilUserButton').addEventListener('click', () => {
+   document.getElementById('showPerfilTotal').style.display = "block";
+   perfilNameShow();
+   document.getElementById('app').style.display = "none";
+   document.getElementById('btnLogout').style.display = "none";
+   document.getElementById('savedPerfil').style.display = "none";
+});
+document.getElementById('backToApp').addEventListener('click', () => {
    document.getElementById('showPerfilTotal').style.display = "none";
    document.getElementById('app').style.display = "block";
    document.getElementById('btnLogout').style.display = "block";
    savePostFromDatabase(); //Se agrega para cargar la pag automatcamente
 });
 const perfilNameShow = () => {
-       document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
+   document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
        <div class="col-5"><img class="perfil-image" src=${firebase.auth().currentUser.photoURL ? firebase.auth().currentUser.photoURL : "./assets/user11.png"} alt="imagen usuario"></div>`
 };
-document.getElementById('myPost').addEventListener('click', () =>{
-   document.getElementById('publishedPerfil').style.display ="block";
+document.getElementById('myPost').addEventListener('click', () => {
+   document.getElementById('publishedPerfil').style.display = "block";
    savePostFromDatabaseUser();
-   document.getElementById('savedPerfil').style.display ="none";
+   document.getElementById('savedPerfil').style.display = "none";
 });
-document.getElementById('mySaved').addEventListener('click', () =>{
-   document.getElementById('publishedPerfil').style.display ="none";
-   document.getElementById('savedPerfil').style.display ="block";
-}); 
+document.getElementById('mySaved').addEventListener('click', () => {
+   document.getElementById('publishedPerfil').style.display = "none";
+   document.getElementById('savedPerfil').style.display = "block";
+});
 
-const savePostFromDatabaseUser =() =>{
+const savePostFromDatabaseUser = () => {
    document.getElementById('publishedPerfil').innerHTML = ""; //Limpiando la pagina para que no se repitan los post en perfil de usuario
-    readPostUser((postUser)=>{ 
+   readPostUser((postUser) => {
       // console.log(postUser.key)
-        document.getElementById('publishedPerfil').innerHTML = 
-        `<div class="row">
+      document.getElementById('publishedPerfil').innerHTML =
+         `<div class="row">
         <div class="col-12 space">
            <div class="col-2 box-img">
               <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p><p>${postUser.val().createdDate}</p></div>              
@@ -188,25 +200,25 @@ const savePostFromDatabaseUser =() =>{
                  </div>
            </div>
         </div>
-     </div>` + document.getElementById('publishedPerfil').innerHTML; 
+     </div>` + document.getElementById('publishedPerfil').innerHTML;
 
-     let deletePost = document.getElementsByClassName('delete-post');
-     for(let i = 0; i< deletePost.length; i++){
-        deletePost[i].addEventListener('click', deleteComment);
+      let deletePost = document.getElementsByClassName('delete-post');
+      for (let i = 0; i < deletePost.length; i++) {
+         deletePost[i].addEventListener('click', deleteComment);
       }
    });
-   
+
 };
 
 /*----------------------------------------------------------------------------------------------------------------------*/
-const deleteComment = (post)=> {
+const deleteComment = (post) => {
    //Variable para recuperar el id del post desde el boton
    const userId = firebase.auth().currentUser.uid;
-     const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
-    //console.log(post.target)
-    console.log(idPost)
-     firebase.database().ref('post/'+idPost).remove(); 
-     firebase.database().ref('postUser/'+userId+'/'+idPost).remove(); 
-   
-    savePostFromDatabaseUser();
- };
+   const idPost = post.currentTarget.getAttribute('id').slice(6) //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
+   //console.log(post.target)
+   //console.log(idPost)
+   firebase.database().ref('post/' + idPost).remove();
+   firebase.database().ref('postUser/' + userId + '/' + idPost).remove();
+
+   savePostFromDatabaseUser();
+};
