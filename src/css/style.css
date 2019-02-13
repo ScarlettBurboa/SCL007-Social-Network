@@ -84,7 +84,7 @@
     max-width: 500px;
     display: block; 
     margin: 0 auto;
-    margin-top:-5%;
+    margin-top:-30%;
 
 }
 .information-perfil{
@@ -160,6 +160,32 @@
 .space{
     margin:8px auto;
     display: block;
+}
+.search{
+    width: 100%;
+    max-width: 500px;
+    background-color: #1AA9E2;
+    margin-top: -30%;
+}
+.input-search{
+    width:90%;
+    margin:0 auto;
+    display: block;
+    padding: 8px 5px;
+    background-color: transparent;
+    -webkit-border-radius: 5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    border: 2px solid #fff;
+    color:#fff;
+
+}
+.space-search{
+    padding:8px 0;
+}
+.input-search::placeholder{
+    color:#fff;
+    padding-left:10px;
 }
 header{
     position: fixed;

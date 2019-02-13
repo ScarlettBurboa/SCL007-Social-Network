@@ -9,11 +9,13 @@ window.onload = () =>{
             document.getElementById('btnLogout').style.display = "block"; 
             savePostFromDatabase();
             document.getElementById('showPerfilTotal').style.display = "none";
+            document.getElementById('search').style.display ="none";
          }else{
             document.getElementById('loginRegister').style.display ="block";
             document.getElementById('app').style.display = "none";
             document.getElementById('btnLogout').style.display = "none";
             document.getElementById('showPerfilTotal').style.display = "none";
+            document.getElementById('search').style.display ="none";
         }   
     });
 }
@@ -151,13 +153,7 @@ const perfilNameShow = () => {
 document.getElementById('myPost').addEventListener('click', () =>{
    document.getElementById('publishedPerfil').style.display ="block";
    savePostFromDatabaseUser();
-   document.getElementById('savedPerfil').style.display ="none";
 });
-document.getElementById('mySaved').addEventListener('click', () =>{
-   document.getElementById('publishedPerfil').style.display ="none";
-   document.getElementById('savedPerfil').style.display ="block";
-}); 
-
 const savePostFromDatabaseUser =() =>{
    document.getElementById('publishedPerfil').innerHTML = ""; //Limpiando la pagina para que no se repitan los post en perfil de usuario
     readPostUser((postUser)=>{ 
@@ -197,7 +193,6 @@ const savePostFromDatabaseUser =() =>{
    });
    
 };
-
 /*----------------------------------------------------------------------------------------------------------------------*/
 const deleteComment = (post)=> {
    //Variable para recuperar el id del post desde el boton
@@ -210,3 +205,33 @@ const deleteComment = (post)=> {
    
     savePostFromDatabaseUser();
  };
+//Función para que al hacer click en inicio realice Scroll Top
+let offset = 0;
+let call;
+function scroll() {
+    if ((offset - document.documentElement.scrollTop) > 0) {
+        document.documentElement.scrollTop += 10
+    }
+    else if ((offset - document.documentElement.scrollTop) < 0) {
+        document.documentElement.scrollTop -= 10
+    }
+    else {
+        clearInterval(call)
+    }
+};
+document.getElementById('buttonScrollTop').addEventListener('click', scroll_click);
+//CallBack Función
+function scroll_click(e) {
+    e.preventDefault();
+    call = setInterval(scroll, 10);
+}
+document.getElementById('buttonSearch').addEventListener('click', () =>{
+     document.getElementById('search').style.display ="block";
+     document.getElementById('app').style.display = "none";
+     document.getElementById('btnLogout').style.display = "none";
+});
+document.getElementById('backToAppTwo').addEventListener('click', () =>{
+   document.getElementById('search').style.display ="none";
+   document.getElementById('app').style.display = "block";
+   document.getElementById('btnLogout').style.display = "block";
+});
