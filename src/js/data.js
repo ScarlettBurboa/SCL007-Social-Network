@@ -29,6 +29,7 @@ export let object = () =>{
 export const readPost = (postChange) =>{
     const postReference = firebase.database().ref('post/');
     postReference.on('child_added', (post) => {
+        console.log(post.val())
         postChange(post);
     });   
 };
@@ -50,6 +51,8 @@ export function findObjectByKey(array, key, value) {
     }
     return ret;
 }
+
+
 
 
 
