@@ -79,6 +79,11 @@ let miFechaActual = new Date();
 const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
+    if (post.length == 0) {
+      alert('Debe ingresar Texto :)')
+      return false;
+  }
+  return true;
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo, datePost);
   //  savePostUser(userName, post, photo, datePost);
