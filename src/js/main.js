@@ -79,7 +79,7 @@ let datePost = `${day}/${month}/${year}`;
 const savePostIntoDatabase = () => {
     const userName = firebase.auth().currentUser.displayName;
     const post = document.getElementById('postContent').value;
-    post.length == 0 ? (alert('Debes ingresar Texto :) para enviar un mensaje'), false) : true;
+    post.length == 0 ? false(alert('Debes ingresar Texto :) para enviar un mensaje')) : true;
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo, datePost);
   //  savePostUser(userName, post, photo, datePost);
@@ -115,14 +115,14 @@ const savePostFromDatabase = () => {
                </p>
             </div>
          </div>
-         <div class="row icon-group">            
+         <div class="row icon-group" style="display:none;">            
                <div class="col-2"><button id="${createId('likePost')}" class="post-icon"><div id="${createId('like')}" class="like"></div></button></div>
                <div class="col-2"><button id="${createId('savePost')}" class="post-icon"><i class="far fa-bookmark"></button></i></div>
                <div class="col-2"><button id="${createId('commentPost')}" class="post-icon"><i class="far fa-comment-dots"></i></button></div>
                <div class="col-6"><button id="${createId('ReportPost')}" class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
          </div>          
       </div>
-      <div class="col-9 float-right">
+      <div class="col-9 float-right"  style="display:none;">
             <button id="${createId('ReportPost')}" class="col-12 btnAnswer">Ver respuesta</button>
             <div class="hide section-Answer" id ="especialistAnswer">
             <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
@@ -148,6 +148,8 @@ document.getElementById('backToApp').addEventListener('click', () =>{
    document.getElementById('app').style.display = "block";
    document.getElementById('btnLogout').style.display = "block";
 
+   savePostFromDatabase();
+
 });
 const perfilNameShow = () => {
    document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
@@ -159,10 +161,8 @@ document.getElementById('myPost').addEventListener('click', () => {
 
 });
 const savePostFromDatabaseUser =() =>{
-
    document.getElementById('publishedPerfil').innerHTML = ""; //Limpiando la pagina para que no se repitan los post en perfil de usuario
    readPostUser((postUser) => {
-      // console.log(postUser.key)
       document.getElementById('publishedPerfil').innerHTML =
          `<div class="row">
         <div class="col-12 space">
@@ -202,12 +202,9 @@ const deleteComment = (post) => {
    //Variable para recuperar el id del post desde el boton
    const userId = firebase.auth().currentUser.uid;
    const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id)
-   //console.log('hago click') 
-   //console.log(post.target)
-    //console.log(idPost)
      firebase.database().ref('post/'+idPost).remove(); 
-     firebase.database().ref('postUser/'+userId+'/'+idPost).remove();    
-    savePostFromDatabaseUser();
+     firebase.database().ref('postUser/'+userId+'/'+idPost).remove(); 
+     savePostFromDatabaseUser();   
  };
  //Función para que al hacer click en inicio realice Scroll Top
 let offset = 0;

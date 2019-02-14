@@ -1,4 +1,3 @@
-
 /* función para guardar datos (post) en la base de datos Firebase */
 export const savePost = (userName, post, photo, datePost) => {
     const userId = firebase.auth().currentUser.uid;
@@ -51,7 +50,6 @@ export function findObjectByKey(array, key, value) {
     }
     return ret;
 }
-
 
 
 
