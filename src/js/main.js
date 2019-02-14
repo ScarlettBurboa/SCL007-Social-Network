@@ -104,7 +104,6 @@ const savePostFromDatabase = () => {
     document.getElementById('postPublished').innerHTML = 
     `<div class="row space">
    <div class="col-12">
->>>>>>> f1f4f17f90baef1a95689e9421bd2a6ba270985a
       <div class="col-2 box-img">
          <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p><p>${post.val().createdDate}</p></div>
          <div id="${createId('imageUser')}"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
@@ -148,7 +147,6 @@ document.getElementById('backToApp').addEventListener('click', () =>{
    document.getElementById('showPerfilTotal').style.display = "none";
    document.getElementById('app').style.display = "block";
    document.getElementById('btnLogout').style.display = "block";
-   // savePostFromDatabase(); //Se agrega para cargar la pag automatcamente 
 
 });
 const perfilNameShow = () => {
