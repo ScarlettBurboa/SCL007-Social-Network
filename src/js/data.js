@@ -9,7 +9,6 @@ export const savePost = (userName, post, photo, datePost) => {
         userphoto: photo,
         createdDate: datePost,
     });
-    /*_______________________________________________________________________- */
     //Se agrega dentro de la misma función savePost para que tenga la misma id del post y use la misma llave
     firebase.database().ref(`postUser/${userId}/${keyPost}/`).set({
         user : userName, 
@@ -20,11 +19,13 @@ export const savePost = (userName, post, photo, datePost) => {
     };
      /*_______________________________________________________________________- */
 export let objectComplete = [];
-firebase.database().ref('post').orderByValue().on("value", function(snapshot) {
-    Object.entries(snapshot.val()).forEach(function(data) {
-    objectComplete.push(data[1]);
-    });      
-});    
+export let object = () =>{
+    firebase.database().ref('post').orderByValue().on("value", function(snapshot) {
+        Object.entries(snapshot.val()).forEach(function(data) {
+        objectComplete.push(data[1]);
+        });      
+    }); 
+}   
 export const readPost = (postChange) =>{
     const postReference = firebase.database().ref('post/');
     postReference.on('child_added', (post) => {
@@ -42,7 +43,7 @@ export const readPostUser = (postChange) =>{
    //Función para buscar elementos por sus keys.
 export function findObjectByKey(array, key, value) {
     const ret = [];
-    for (var i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         if (array[i][key].includes(value)) {
             ret.push(array[i]);
         }

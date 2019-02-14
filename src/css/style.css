@@ -168,7 +168,7 @@
 .search{
     width: 100%;
     max-width: 500px;
-    background-color: #1AA9E2;
+    background-color: #fff;
     margin: 0 auto;
 }
 .input-search{
@@ -189,6 +189,7 @@
 }
 .space-search{
     padding:8px 0;
+    background-color: #1AA9E2;
 }
 .input-search::placeholder{
     color:#fff;

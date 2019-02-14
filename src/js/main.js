@@ -1,5 +1,5 @@
 import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import {savePost, readPost, readPostUser, objectComplete, findObjectByKey} from '../js/data.js';
+import {savePost, readPost, readPostUser, object, objectComplete, findObjectByKey} from '../js/data.js';
 window.onload = () =>{     
      checkAuthState((user) => {
         if(user){
@@ -139,7 +139,6 @@ const savePostFromDatabase = () => {
      savePostFromDatabaseUser();
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
-     document.getElementById('savedPerfil').style.display ="none";
  });
 document.getElementById('backToApp').addEventListener('click', () =>{
    document.getElementById('showPerfilTotal').style.display = "none";
@@ -225,16 +224,47 @@ function scroll_click(e) {
     call = setInterval(scroll, 10);
 }
 document.getElementById('buttonSearch').addEventListener('click', () =>{
-     document.getElementById('search').style.display ="block";
-     
+     document.getElementById('search').style.display ="block";     
      document.getElementById('buttonSearchElement').addEventListener('click', () =>{
+      document.getElementById('result-search').innerHTML = "";
+      object();
       const searchInput = document.getElementById('search-value').value;
-      console.log(searchInput);
-         console.log(findObjectByKey(objectComplete, 'pospublic', `${searchInput}`));
+      let objectResult = findObjectByKey(objectComplete, 'pospublic', `${searchInput}`);
+      for(let i = 0; i < objectResult.length; i++){
+            document.getElementById('result-search').innerHTML += 
+            `<div class="row space">
+            <div class="col-12">
+               <div class="col-2 box-img">
+                  <div id="${createId('nameUser')}"><p>${objectResult[i].user}</p><p>${objectResult[i].createdDate}</p></div>
+                  <div id="${createId('imageUser')}"><img class="img-profile" src=${objectResult[i].userphoto} alt="imagen usuario"></div>
+                </div>
+               <div class="col-9 question-published clearfix">
+                  <div class="row">
+                     <div class="col-12 post">
+                        <p class="text-post">${objectResult[i].pospublic}
+                        </p>
+                     </div>
+                  </div>
+                  <div class="row icon-group">            
+                        <div class="col-2"><button id="${createId('likePost')}" class="post-icon"><div id="${createId('like')}" class="like"></div></button></div>
+                        <div class="col-2"><button id="${createId('savePost')}" class="post-icon"><i class="far fa-bookmark"></button></i></div>
+                        <div class="col-2"><button id="${createId('commentPost')}" class="post-icon"><i class="far fa-comment-dots"></i></button></div>
+                        <div class="col-6"><button id="${createId('ReportPost')}" class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
+                  </div>          
+               </div>
+               <div class="col-9 float-right">
+                     <button id="${createId('ReportPost')}" class="col-12 btnAnswer">Ver respuesta</button>
+                     <div class="hide section-Answer" id ="especialistAnswer">
+                     <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
+                     <p class="answer-especialist" id="answerEspecialist">LGBT es una sigla para abreviar algunas categorías de la Diversidad Sexual por las diferentes orientaciones sexuales e identidades de género: L de Lesbiana, G de Gay, B de Bisexual y T de Trans.<p>
+                     </div>
+               </div>
+            </div>
+         </div>`
+      };
      });
      document.getElementById('app').style.display = "none";
-     document.getElementById('btnLogout').style.display = "none";
-      
+     document.getElementById('btnLogout').style.display = "none";      
 });
 document.getElementById('backToAppTwo').addEventListener('click', () =>{
    document.getElementById('search').style.display ="none";
