@@ -1,6 +1,6 @@
 const auth = ()=>{
 return {
-    createUserWithEmailAndPassword: (objData)=>{
+    createUserWithEmailAndPassword: (email, password)=>{
 return new Promise((resolve)=>{
 resolve('Usuario creado')
 })

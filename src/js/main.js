@@ -52,7 +52,7 @@ const logInGoogle = () => {
 document.getElementById('btnGmail').addEventListener('click', logInGoogle);
 //Cerrar sesión
 const logOut = () => {
-   //console.log("Ud cerro sesión")
+   //console.log("Ud cerr  o sesión")
    signOut()
 }
 document.getElementById('btnLogout').addEventListener('click', logOut);
@@ -140,8 +140,36 @@ const savePostFromDatabase = () => {
       </div>
    </div>
 </div>` + document.getElementById('postPublished').innerHTML;
+
    });
 };
+
+/*_____________________________________________________ */
+/* Likes */
+
+const updateStarCount = function(element, value){
+   element.textConstent = value
+   };
+   
+      const likesPost = ()=>{
+       const starCountRef = firebase.database().ref('post/');
+       starCountRef.on('value', function(snapshot){
+          // updateStarCount(postElement, snapshot.val());
+          console.log(snapshot.val())
+       })
+   };
+
+
+   let postElement = document.getElementById('likePost');
+   console.log('hice click')
+   for(let i=0; i<postElement.length; i++){
+      postElement.addEventListener('click', likesPost)
+   };
+   
+
+
+//document.getElementById('likePost').addEventListener('click', savePostIntoDatabase);
+
 /**PERFIL ACTION*/
 document.getElementById('perfilUserButton').addEventListener('click', () => {
    document.getElementById('showPerfilTotal').style.display = "block";
@@ -154,7 +182,6 @@ document.getElementById('backToApp').addEventListener('click', () => {
    document.getElementById('showPerfilTotal').style.display = "none";
    document.getElementById('app').style.display = "block";
    document.getElementById('btnLogout').style.display = "block";
-   savePostFromDatabase(); //Se agrega para cargar la pag automatcamente
 });
 const perfilNameShow = () => {
    document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
@@ -222,3 +249,5 @@ const deleteComment = (post) => {
 
    savePostFromDatabaseUser();
 };
+
+
