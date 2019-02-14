@@ -1,5 +1,5 @@
 import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import {savePost, readPost, readPostUser} from '../js/data.js';
+import {savePost, readPost, readPostUser, objectComplete, findObjectByKey} from '../js/data.js';
 window.onload = () =>{     
      checkAuthState((user) => {
         if(user){
@@ -97,9 +97,9 @@ let createId = (function() {
         }
         return id;
     }
-})()
+})();
 const savePostFromDatabase = () => {
-    readPost((post)=>{
+     readPost((post)=>{
     document.getElementById('postPublished').innerHTML = 
     `<div class="row space">
    <div class="col-12">
@@ -136,6 +136,7 @@ const savePostFromDatabase = () => {
  document.getElementById('perfilUserButton').addEventListener('click', ()=>{
      document.getElementById('showPerfilTotal').style.display = "block";
      perfilNameShow();
+     savePostFromDatabaseUser();
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
      document.getElementById('savedPerfil').style.display ="none";
@@ -144,7 +145,7 @@ document.getElementById('backToApp').addEventListener('click', () =>{
    document.getElementById('showPerfilTotal').style.display = "none";
    document.getElementById('app').style.display = "block";
    document.getElementById('btnLogout').style.display = "block";
-   savePostFromDatabase(); //Se agrega para cargar la pag automatcamente
+  /*  savePostFromDatabase(); //Se agrega para cargar la pag automatcamente */
 });
 const perfilNameShow = () => {
        document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
@@ -172,8 +173,8 @@ const savePostFromDatabaseUser =() =>{
                  </div>
               </div>
               <div class="row icon-group">            
-                    <div class="col-6"><button id="" class="post-icon">EDITAR</button></div>
-                    <div class="col-6"><button id="postId${postUser.key}" class="delete-post">BORRAR</button></div>
+                    <div class="col-6"><button class="edit-button" id="" class="post-icon">EDITAR</button></div>
+                    <div class="col-6"><button class="delete-button" id="postId${postUser.key}" class="delete-post">BORRAR</button></div>
               </div>          
            </div>
            <div class="col-9 float-right">
@@ -190,8 +191,7 @@ const savePostFromDatabaseUser =() =>{
      for(let i = 0; i< deletePost.length; i++){
         deletePost[i].addEventListener('click', deleteComment);
       }
-   });
-   
+   });   
 };
 /*----------------------------------------------------------------------------------------------------------------------*/
 const deleteComment = (post)=> {
@@ -201,11 +201,10 @@ const deleteComment = (post)=> {
     //console.log(post.target)
     console.log(idPost)
      firebase.database().ref('post/'+idPost).remove(); 
-     firebase.database().ref('postUser/'+userId+'/'+idPost).remove(); 
-   
+     firebase.database().ref('postUser/'+userId+'/'+idPost).remove();    
     savePostFromDatabaseUser();
  };
-//Función para que al hacer click en inicio realice Scroll Top
+ //Función para que al hacer click en inicio realice Scroll Top
 let offset = 0;
 let call;
 function scroll() {
@@ -227,8 +226,15 @@ function scroll_click(e) {
 }
 document.getElementById('buttonSearch').addEventListener('click', () =>{
      document.getElementById('search').style.display ="block";
+     
+     document.getElementById('buttonSearchElement').addEventListener('click', () =>{
+      const searchInput = document.getElementById('search-value').value;
+      console.log(searchInput);
+         console.log(findObjectByKey(objectComplete, 'pospublic', `${searchInput}`));
+     });
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
+      
 });
 document.getElementById('backToAppTwo').addEventListener('click', () =>{
    document.getElementById('search').style.display ="none";

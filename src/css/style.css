@@ -84,8 +84,8 @@
     max-width: 500px;
     display: block; 
     margin: 0 auto;
-    margin-top:-30%;
-
+    background-color: #fff;
+    min-height: 600px;
 }
 .information-perfil{
     width:100%;
@@ -108,12 +108,15 @@
     text-align: center;
     line-height: 30px;
 }
-.back{
+.backright{
+    float: right;
+}
+.back, .backright{
     background-color: transparent;
     border:none;
     color: #fff;
 }
-.back i{
+.back i, .backright i{
     border-radius: 50%;
     -webkit-border-radius:50%;
     -moz-border-radius:50%;
@@ -157,11 +160,16 @@
 .show{
     display:block !important;
 }
+.space{
+    margin:8px auto;
+    display: block;
+    width: 95%;
+}
 .search{
     width: 100%;
     max-width: 500px;
     background-color: #1AA9E2;
-    margin-top: -30%;
+    margin: 0 auto;
 }
 .input-search{
     width:90%;
@@ -218,11 +226,10 @@ header{
     float:right;
 }
 .sectionfooter{
-
     border-top: 1px #898989 solid; 
     padding: 10px 0;
     position:fixed;
-    left:0px;
+    margin:0 auto;
     bottom:0px;
     height:30px;
     width:100%;
@@ -373,8 +380,33 @@ textarea.answer::placeholder{
     .clearfix:after {
       clear: both;
     }
-
-    
+.box-img div p{
+    text-align: center;
+}    
+.delete-button, .edit-button{
+    border: 1px solid #c00b0b;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #c00b0b;
+    float:right;
+    padding: 5px 10px;
+    transition: all 600ms ease;
+}
+.edit-button{
+    float:left;
+    border: 1px solid #58ac14;
+    color: #58ac14;
+}
+.delete-button:hover, .delete-button:focus{
+    background-color: #c00b0b;
+    color:#fff;
+}
+.edit-button:hover, .edit-button:focus{
+    background-color: #58ac14;
+    color:#fff;
+}
     @media(max-width:468px){
         .box-registro{
             margin-top:30%;
