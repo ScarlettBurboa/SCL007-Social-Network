@@ -84,7 +84,9 @@ const savePostIntoDatabase = () => {
     savePost(userName, post, photo, datePost);
   //  savePostUser(userName, post, photo, datePost);
 };
-document.getElementById('public').addEventListener('click', savePostIntoDatabase);
+document.getElementById('public').addEventListener('click', ()=>{
+   savePostIntoDatabase();
+});
 // Crea una iD única
 let createId = (function() {
     let map = {};
@@ -100,6 +102,7 @@ let createId = (function() {
     }
 })();
 const savePostFromDatabase = () => {
+   document.getElementById('postPublished').innerHTML = "";
      readPost((post)=>{
     document.getElementById('postPublished').innerHTML = 
     `<div class="row space">
@@ -115,14 +118,14 @@ const savePostFromDatabase = () => {
                </p>
             </div>
          </div>
-         <div class="row icon-group" style="display:none;">            
+         <div class="row icon-group">            
                <div class="col-2"><button id="${createId('likePost')}" class="post-icon"><div id="${createId('like')}" class="like"></div></button></div>
                <div class="col-2"><button id="${createId('savePost')}" class="post-icon"><i class="far fa-bookmark"></button></i></div>
                <div class="col-2"><button id="${createId('commentPost')}" class="post-icon"><i class="far fa-comment-dots"></i></button></div>
                <div class="col-6"><button id="${createId('ReportPost')}" class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
          </div>          
       </div>
-      <div class="col-9 float-right"  style="display:none;">
+      <div class="col-9 float-right">
             <button id="${createId('ReportPost')}" class="col-12 btnAnswer">Ver respuesta</button>
             <div class="hide section-Answer" id ="especialistAnswer">
             <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
@@ -138,8 +141,7 @@ const savePostFromDatabase = () => {
  document.getElementById('perfilUserButton').addEventListener('click', ()=>{
      document.getElementById('showPerfilTotal').style.display = "block";
      perfilNameShow();
-     savePostFromDatabaseUser();
-     
+     savePostFromDatabaseUser();     
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
  });
@@ -147,6 +149,7 @@ document.getElementById('backToApp').addEventListener('click', () =>{
    document.getElementById('showPerfilTotal').style.display = "none";
    document.getElementById('app').style.display = "block";
    document.getElementById('btnLogout').style.display = "block";
+   document.getElementById('postPublished').innerHTML = "";
    savePostFromDatabase();
 });
 const perfilNameShow = () => {
