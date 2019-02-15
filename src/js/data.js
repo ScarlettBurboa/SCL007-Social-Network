@@ -49,7 +49,6 @@ export function findObjectByKey(array, key, value) {
     }
     return ret;
 }
-
 //Función para editar
 export const saveEditPost = (idPost, newText) => {
     const userId = firebase.auth().currentUser.uid;
