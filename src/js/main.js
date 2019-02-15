@@ -82,11 +82,11 @@ const savePostIntoDatabase = () => {
     post.length == 0 ? false(alert('Debes ingresar Texto :) para enviar un mensaje')) : true;
     const photo = firebase.auth().currentUser.photoURL;
     savePost(userName, post, photo, datePost);
+    document.getElementById('postContent').value ="";
   //  savePostUser(userName, post, photo, datePost);
 };
 document.getElementById('public').addEventListener('click', ()=>{
-    savePostIntoDatabase();
-   
+   savePostIntoDatabase();
 });
 // Crea una iD única
 let createId = (function() {
@@ -139,12 +139,12 @@ const savePostFromDatabase = () => {
    </div>
 </div>` + document.getElementById('postPublished').innerHTML;
 
+
 let postReport = document.getElementsByClassName('postReport');
 //reportar comentario
 for (let i=0; i < postReport.length; i++){ 
    postReport[i].addEventListener('click', reportPostFuncion)
 }
-
    });
 };
 //Función reportar
@@ -172,6 +172,7 @@ document.getElementById('backToApp').addEventListener('click', () =>{
    document.getElementById('btnLogout').style.display = "block";
    document.getElementById('postPublished').innerHTML = "";
    savePostFromDatabase();
+
 });
 const perfilNameShow = () => {
    document.getElementById('perfilName').innerHTML = `<div class="col-7"><p class="perfil-name">${firebase.auth().currentUser.displayName ? firebase.auth().currentUser.displayName : "Anonimo"}</p></div>
@@ -182,8 +183,9 @@ document.getElementById('myPost').addEventListener('click', () => {
    savePostFromDatabaseUser();
 
 });
+//Perfil privado
 const savePostFromDatabaseUser =() =>{
-   document.getElementById('publishedPerfil').innerHTML = " "; //Limpiando la pagina para que no se repitan los post en perfil de usuario
+   document.getElementById('publishedPerfil').innerHTML = ""; //Limpiando la pagina para que no se repitan los post en perfil de usuario
    readPostUser((postUser) => {
       document.getElementById('publishedPerfil').innerHTML =
          `<div class="row">
