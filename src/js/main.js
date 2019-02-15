@@ -1,5 +1,5 @@
 import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import {savePost, readPost, readPostUser, object, objectComplete, findObjectByKey} from '../js/data.js';
+import {savePost, readPost, readPostUser, object, objectComplete, findObjectByKey, saveEditPost} from '../js/data.js';
 window.onload = () =>{     
      checkAuthState((user) => {
         if(user){
@@ -104,7 +104,6 @@ const savePostFromDatabase = () => {
     document.getElementById('postPublished').innerHTML = 
     `<div class="row space">
    <div class="col-12">
->>>>>>> f1f4f17f90baef1a95689e9421bd2a6ba270985a
       <div class="col-2 box-img">
          <div id="${createId('nameUser')}"><p>${post.val().user ? post.val().user : "Anonimo"}</p><p>${post.val().createdDate}</p></div>
          <div id="${createId('imageUser')}"><img class="img-profile" src=${post.val().userphoto ? post.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
@@ -134,12 +133,15 @@ const savePostFromDatabase = () => {
 </div>` + document.getElementById('postPublished').innerHTML;
 
    });
+   
 };
  /**PERFIL ACTION*/
  document.getElementById('perfilUserButton').addEventListener('click', ()=>{
      document.getElementById('showPerfilTotal').style.display = "block";
      perfilNameShow();
      savePostFromDatabaseUser();
+     
+    
      
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
@@ -161,7 +163,6 @@ document.getElementById('myPost').addEventListener('click', () => {
 
 });
 const savePostFromDatabaseUser =() =>{
-
    document.getElementById('publishedPerfil').innerHTML = ""; //Limpiando la pagina para que no se repitan los post en perfil de usuario
    readPostUser((postUser) => {
       // console.log(postUser.key)
@@ -174,13 +175,13 @@ const savePostFromDatabaseUser =() =>{
             </div>
            <div class="col-9 question-published clearfix">
               <div class="row">
-                 <div class="col-12">
-                    <p class="caja-texto">${postUser.val().pospublic}</p>
+              <div class="col-12" id="boxEdit${postUser.key}">
+                    <p id="textoPost${postUser.key}" class="caja-texto">${postUser.val().pospublic}</p>
                  </div>
               </div>
               <div class="row icon-group">            
-                    <div class="col-6"><button class="edit-button" id="" class="post-icon">EDITAR</button></div>
-                    <div class="col-6"><button class="delete-button" id="postId${postUser.key}" class="delete-post">BORRAR</button></div>
+                    <div class="col-6"><button class="edit-button editPost post-icon" id="editId${postUser.key}">EDITAR</button></div>
+                    <div class="col-6"><button class="delete-button delete-post" id="postId${postUser.key}">BORRAR</button></div>
               </div>          
            </div>
            <div class="col-9 float-right">
@@ -194,10 +195,45 @@ const savePostFromDatabaseUser =() =>{
      </div>` + document.getElementById('publishedPerfil').innerHTML;
 
       let deletePost = document.getElementsByClassName('delete-button');
+      let editPost = document.getElementsByClassName('editPost');
        for (let i = 0; i < deletePost.length; i++) {
          deletePost[i].addEventListener('click', deleteComment);
+         editPost[i].addEventListener('click', editPostFunction);
       }
+
    });   
+};
+
+//Funcion editar post
+const editPostFunction = (post)=> {
+ const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id) 
+ let boxEdit = document.getElementById('boxEdit' + idPost);
+ let textoPostId = document.getElementById('textoPost' + idPost)
+ let textArea = document.createElement('textarea');
+ let btnSave = document.createElement('input');
+ btnSave.setAttribute("type", "button");
+ btnSave.setAttribute("value", "Guardar")
+ let btnCancel = document.createElement('input');
+ btnCancel.setAttribute("type", "button");
+ btnCancel.setAttribute("value", "Cancelar");
+ btnCancel.setAttribute("class", "blablabla");
+ textArea.value = textoPostId.textContent;
+ boxEdit.removeChild(textoPostId);
+ boxEdit.appendChild(textArea);
+ boxEdit.appendChild(btnSave);
+ boxEdit.appendChild(btnCancel);
+ 
+ btnSave.addEventListener("click", () => {
+   let newText = textArea.value;   
+   saveEditPost(idPost, newText);
+   savePostFromDatabaseUser();  
+   savePostFromDatabase();
+ });
+
+ /* btnCancel.addEventListener("click", () =>{
+
+ }); */
+
 };
 /*----------------------------------------------------------------------------------------------------------------------*/
 const deleteComment = (post) => {
