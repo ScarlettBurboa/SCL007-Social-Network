@@ -103,7 +103,7 @@ let createId = (function() {
     }
 })();
 const savePostFromDatabase = () => {
-   document.getElementById('postPublished').innerHTML = " ";
+   document.getElementById('publishedPerfil').innerHTML = " ";
      readPost((post)=>{
     document.getElementById('postPublished').innerHTML = 
     `<div class="row space">
@@ -145,7 +145,7 @@ let postReport = document.getElementsByClassName('postReport');
 for (let i=0; i < postReport.length; i++){ 
    postReport[i].addEventListener('click', reportPostFuncion)
 }
-document.getElementById('publishedPerfil').innerHTML = " ";
+
    });
 };
 //Función reportar
