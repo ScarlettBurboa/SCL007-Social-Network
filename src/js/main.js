@@ -1,5 +1,5 @@
 import {checkAuthState, registerUser, gmailLogIn, signOut, loginUserWithEmail, facebookLogIn, twitterLogIn} from '../js/auth.js';
-import {savePost, readPost, readPostUser, object, objectComplete, findObjectByKey} from '../js/data.js';
+import {savePost, readPost, readPostUser, object, objectComplete, findObjectByKey, saveEditPost} from '../js/data.js';
 window.onload = () =>{     
      checkAuthState((user) => {
         if(user){
@@ -114,7 +114,7 @@ const savePostFromDatabase = () => {
       <div class="col-9 question-published clearfix">
          <div class="row">
             <div class="col-12 post">
-               <p class="text-post">${post.val().pospublic}
+               <p id="nuevotexto" class="text-post">${post.val().pospublic}
                </p>
             </div>
          </div>
@@ -171,15 +171,15 @@ const savePostFromDatabaseUser =() =>{
               <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p><p>${postUser.val().createdDate}</p></div>              
                <div id=""><img class="img-profile" src=${postUser.val().userphoto ? postUser.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
             </div>
-           <div class="col-9 question-published clearfix">
+            <div class="col-9 question-published clearfix">
               <div class="row">
-                 <div class="col-12">
-                    <p class="caja-texto">${postUser.val().pospublic}</p>
+              <div class="col-12 post" id="boxEdit${postUser.key}">
+                    <p id="textoPost${postUser.key}" class="caja-texto text-post">${postUser.val().pospublic}</p>
                  </div>
               </div>
               <div class="row icon-group">            
-                    <div class="col-6"><button class="edit-button" id="" class="post-icon">EDITAR</button></div>
-                    <div class="col-6"><button class="delete-button" id="postId${postUser.key}" class="delete-post">BORRAR</button></div>
+                    <div class="col-6"><button class="edit-button editPost post-icon" id="editId${postUser.key}">EDITAR</button></div>
+                    <div class="col-6"><button class="delete-button delete-post" id="postId${postUser.key}">BORRAR</button></div>
               </div>          
            </div>
            <div class="col-9 float-right">
@@ -193,10 +193,52 @@ const savePostFromDatabaseUser =() =>{
      </div>` + document.getElementById('publishedPerfil').innerHTML;
 
       let deletePost = document.getElementsByClassName('delete-button');
+      let editPost = document.getElementsByClassName('editPost');
        for (let i = 0; i < deletePost.length; i++) {
          deletePost[i].addEventListener('click', deleteComment);
+         editPost[i].addEventListener('click', editPostFunction);
       }
+
    });   
+};
+
+//Funcion editar post
+const editPostFunction = (post)=> { 
+ const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id) 
+ let boxEdit = document.getElementById('boxEdit' + idPost);
+ let textoPostId = document.getElementById('textoPost' + idPost)
+ let textArea = document.createElement('textarea');
+ let btnSave = document.createElement('input');
+ btnSave.setAttribute("type", "button");
+ btnSave.setAttribute("value", "Guardar")
+ btnSave.setAttribute("class", "btnEdit1 btnEdit");
+ let btnCancel = document.createElement('input');
+ btnCancel.setAttribute("type", "button");
+ btnCancel.setAttribute("value", "Cancelar");
+ btnCancel.setAttribute("class", "btnEdit2 btnEdit float-right");
+ textArea.setAttribute("class","text-area-edit");
+ textArea.value = textoPostId.textContent;
+ boxEdit.removeChild(textoPostId);
+ boxEdit.appendChild(textArea);
+ boxEdit.appendChild(btnSave);
+ boxEdit.appendChild(btnCancel);
+ document.querySelector('.icon-group').style.display = 'none';
+ 
+ btnSave.addEventListener("click", () => {
+   let newText = textArea.value; //nuevo texto corresponderá al texto editado en el textarea
+   document.getElementById('nuevotexto').innerHTML = newText; // el nuevo texto lo imprimimos en la etiqueta <p>
+   saveEditPost(idPost, newText);
+   savePostFromDatabaseUser();
+ });
+  
+ btnCancel.addEventListener("click", () =>{
+   boxEdit.removeChild(textArea);
+   boxEdit.removeChild(btnSave);
+   boxEdit.removeChild(btnCancel);
+   boxEdit.appendChild(textoPostId);
+   document.querySelector('.icon-group').style.display = 'block';
+ }); 
+ savePostFromDatabase();
 };
 /*----------------------------------------------------------------------------------------------------------------------*/
 const deleteComment = (post) => {
@@ -244,7 +286,7 @@ document.getElementById('buttonSearch').addEventListener('click', () =>{
                 </div>
                <div class="col-9 question-published clearfix">
                   <div class="row">
-                     <div class="col-12 post">
+                  <div class="col-12 post">
                         <p class="text-post">${objectResult[i].pospublic}
                         </p>
                      </div>

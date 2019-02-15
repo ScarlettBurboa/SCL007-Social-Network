@@ -300,7 +300,46 @@ textarea.answer::placeholder{
     padding: 5px;
     text-align: center;
     }
+
+.text-area-edit{
+    padding-top: 5px;
+    padding-left: 5px;
+    max-width: 97%;
+    min-width: 97%;
+    min-height: 60px;
+    max-height: 60px;
+    display: block;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    border-bottom: #ccc7c7 1px solid;
     
+}  
+
+.btnEdit{
+    color: #fff;
+    -webkit-border-radius: 20px; 
+    -moz-border-radius:20px;
+    border-radius:20px;
+    padding: 2px 8px;
+    border: 1px #898989 solid;
+    font-size: 1em;
+}
+.btnEdit:hover{
+    opacity: 0.6;
+    text-decoration: none;
+    transition: 0.4s;
+}
+.btnEdit1{
+    background-color: #1AA9E2;
+    margin: 5px 0 6px 40px;
+
+}
+.btnEdit2{
+    background-color: #BFD34B;
+    margin: 5px 40px 6px 0;
+}
+
     .box-img {
         padding-left: 10px;
         padding-top: 5px;
@@ -386,19 +425,26 @@ textarea.answer::placeholder{
 }    
 .delete-button, .edit-button{
     border: 1px solid #c00b0b;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
     background-color: transparent;
     color: #c00b0b;
     float:right;
     padding: 5px 10px;
     transition: all 600ms ease;
+    
+    
 }
 .edit-button{
     float:left;
     border: 1px solid #58ac14;
     color: #58ac14;
+    margin: 5px 0 6px 40px;
+}
+
+.delete-button{
+    margin: 5px 40px 6px 0;
 }
 .delete-button:hover, .delete-button:focus{
     background-color: #c00b0b;
