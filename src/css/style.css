@@ -473,4 +473,38 @@ textarea.answer::placeholder{
             margin-top: -5%;
         }
     }
-    
+ /*section reportar*/
+ dialog::backdrop {
+    background: rgba(0,0,0,.6);
+  }
+  #mostrar:hover {
+    background-color: #FE3E32;
+    transition: .2s ease-in;
+  }
+  
+  #dialogo {
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+    padding-top: 15px;
+  }
+  #dialogo p {
+      margin-top: 10px;
+  }
+  #closeDialog {
+    margin-top: 15px;
+    background: #67C3E6;
+    border: none;
+    border-radius: 5px; 
+    padding: .4rem 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    margin-right: 15px;
+  }
+  .hidden{
+      color: transparent;
+  }
+  #closeDialog a {
+      text-decoration: none;
+      color: #000;
+  }   
