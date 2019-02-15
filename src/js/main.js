@@ -304,8 +304,8 @@ document.getElementById('buttonSearch').addEventListener('click', () =>{
             `<div class="row space">
             <div class="col-12">
                <div class="col-2 box-img">
-                  <div id="${createId('nameUser')}"><p>${objectResult[i].user}</p><p>${objectResult[i].createdDate}</p></div>
-                  <div id="${createId('imageUser')}"><img class="img-profile" src=${objectResult[i].userphoto} alt="imagen usuario"></div>
+                  <div id="${createId('nameUser')}"><p>${objectResult[i].user ? objectResult[i].user : "Anonimo"}</p><p>${objectResult[i].createdDate}</p></div>
+                  <div id="${createId('imageUser')}"><img class="img-profile" src=${objectResult[i].userphoto ? objectResult[i].userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
                 </div>
                <div class="col-9 question-published clearfix">
                   <div class="row">
