@@ -85,8 +85,7 @@ const savePostIntoDatabase = () => {
   //  savePostUser(userName, post, photo, datePost);
 };
 document.getElementById('public').addEventListener('click', ()=>{
-    savePostIntoDatabase();
-   
+   savePostIntoDatabase();
 });
 // Crea una iD única
 let createId = (function() {
@@ -135,7 +134,7 @@ const savePostFromDatabase = () => {
       </div>
    </div>
 </div>` + document.getElementById('postPublished').innerHTML;
-document.getElementById('publishedPerfil').innerHTML = " ";
+
    });
 };
  /**PERFIL ACTION*/
@@ -163,8 +162,9 @@ document.getElementById('myPost').addEventListener('click', () => {
    savePostFromDatabaseUser();
 
 });
+//Perfil privado
 const savePostFromDatabaseUser =() =>{
-   document.getElementById('publishedPerfil').innerHTML = " "; //Limpiando la pagina para que no se repitan los post en perfil de usuario
+   document.getElementById('publishedPerfil').innerHTML = ""; //Limpiando la pagina para que no se repitan los post en perfil de usuario
    readPostUser((postUser) => {
       document.getElementById('publishedPerfil').innerHTML =
          `<div class="row">
