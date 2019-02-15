@@ -170,10 +170,10 @@ const savePostFromDatabaseUser =() =>{
               <div id=""><p>${postUser.val().user ? postUser.val().user : "Anonimo"}</p><p>${postUser.val().createdDate}</p></div>              
                <div id=""><img class="img-profile" src=${postUser.val().userphoto ? postUser.val().userphoto : "./assets/user11.png"} alt="imagen usuario"></div>
             </div>
-           <div class="col-9 question-published clearfix">
+            <div class="col-9 question-published clearfix">
               <div class="row">
-              <div class="col-12" id="boxEdit${postUser.key}">
-                    <p id="textoPost${postUser.key}" class="caja-texto">${postUser.val().pospublic}</p>
+              <div class="col-12 post" id="boxEdit${postUser.key}">
+                    <p id="textoPost${postUser.key}" class="caja-texto text-post">${postUser.val().pospublic}</p>
                  </div>
               </div>
               <div class="row icon-group">            
@@ -202,7 +202,7 @@ const savePostFromDatabaseUser =() =>{
 };
 
 //Funcion editar post
-const editPostFunction = (post)=> {
+const editPostFunction = (post)=> { 
  const idPost = post.currentTarget.getAttribute('id').slice(6)  //Target identifica el objeto dsde donde se realizo el evento/ Se usa slice para extraer la posición del elemento que necesito (id) 
  let boxEdit = document.getElementById('boxEdit' + idPost);
  let textoPostId = document.getElementById('textoPost' + idPost)
@@ -210,16 +210,18 @@ const editPostFunction = (post)=> {
  let btnSave = document.createElement('input');
  btnSave.setAttribute("type", "button");
  btnSave.setAttribute("value", "Guardar")
- btnSave.setAttribute("class", "blablabla");
+ btnSave.setAttribute("class", "btnEdit1 btnEdit");
  let btnCancel = document.createElement('input');
  btnCancel.setAttribute("type", "button");
  btnCancel.setAttribute("value", "Cancelar");
- btnCancel.setAttribute("class", "blablabla");
+ btnCancel.setAttribute("class", "btnEdit2 btnEdit float-right");
+ textArea.setAttribute("class","text-area-edit");
  textArea.value = textoPostId.textContent;
  boxEdit.removeChild(textoPostId);
  boxEdit.appendChild(textArea);
  boxEdit.appendChild(btnSave);
  boxEdit.appendChild(btnCancel);
+ document.querySelector('.icon-group').style.display = 'none';
  
  btnSave.addEventListener("click", () => {
    let newText = textArea.value; //nuevo texto corresponderá al texto editado en el textarea
@@ -233,6 +235,7 @@ const editPostFunction = (post)=> {
    boxEdit.removeChild(btnSave);
    boxEdit.removeChild(btnCancel);
    boxEdit.appendChild(textoPostId);
+   document.querySelector('.icon-group').style.display = 'block';
  }); 
  savePostFromDatabase();
 };
@@ -285,7 +288,7 @@ document.getElementById('buttonSearch').addEventListener('click', () =>{
                 </div>
                <div class="col-9 question-published clearfix">
                   <div class="row">
-                     <div class="col-12 post">
+                  <div class="col-12 post">
                         <p class="text-post">${objectResult[i].pospublic}
                         </p>
                      </div>
