@@ -102,7 +102,7 @@ let createId = (function() {
     }
 })();
 const savePostFromDatabase = () => {
-   document.getElementById('postPublished').innerHTML = "";
+   document.getElementById('postPublished').innerHTML = " ";
      readPost((post)=>{
     document.getElementById('postPublished').innerHTML = 
     `<div class="row space">
@@ -118,14 +118,14 @@ const savePostFromDatabase = () => {
                </p>
             </div>
          </div>
-         <div class="row icon-group">            
+         <div class="row icon-group" style="display:none;">            
                <div class="col-2"><button id="${createId('likePost')}" class="post-icon"><div id="${createId('like')}" class="like"></div></button></div>
                <div class="col-2"><button id="${createId('savePost')}" class="post-icon"><i class="far fa-bookmark"></button></i></div>
                <div class="col-2"><button id="${createId('commentPost')}" class="post-icon"><i class="far fa-comment-dots"></i></button></div>
                <div class="col-6"><button id="${createId('ReportPost')}" class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
          </div>          
       </div>
-      <div class="col-9 float-right">
+      <div class="col-9 float-right" style="display:none;">
             <button id="${createId('ReportPost')}" class="col-12 btnAnswer">Ver respuesta</button>
             <div class="hide section-Answer" id ="especialistAnswer">
             <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
@@ -182,7 +182,7 @@ const savePostFromDatabaseUser =() =>{
                     <div class="col-6"><button class="delete-button delete-post" id="postId${postUser.key}">BORRAR</button></div>
               </div>          
            </div>
-           <div class="col-9 float-right">
+           <div class="col-9 float-right" style="display:none;">
                  <button id="" class="col-12 btnAnswer">Ver respuesta</button>
                  <div class="hide section-Answer" id ="especialistAnswer">
                  <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
@@ -291,14 +291,14 @@ document.getElementById('buttonSearch').addEventListener('click', () =>{
                         </p>
                      </div>
                   </div>
-                  <div class="row icon-group">            
+                  <div class="row icon-group" style="display:none;">            
                         <div class="col-2"><button id="${createId('likePost')}" class="post-icon"><div id="${createId('like')}" class="like"></div></button></div>
                         <div class="col-2"><button id="${createId('savePost')}" class="post-icon"><i class="far fa-bookmark"></button></i></div>
                         <div class="col-2"><button id="${createId('commentPost')}" class="post-icon"><i class="far fa-comment-dots"></i></button></div>
                         <div class="col-6"><button id="${createId('ReportPost')}" class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
                   </div>          
                </div>
-               <div class="col-9 float-right">
+               <div class="col-9 float-right" style="display:none;">
                      <button id="${createId('ReportPost')}" class="col-12 btnAnswer">Ver respuesta</button>
                      <div class="hide section-Answer" id ="especialistAnswer">
                      <p class="name-especialist" id="nameEspecialist">Doctora Javiera Carreño</p>
