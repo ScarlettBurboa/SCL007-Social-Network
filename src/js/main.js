@@ -65,8 +65,9 @@ document.getElementById("resetPassword").addEventListener("click", () => {
       .then(function () {
          document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
       }).catch(error => {
-         document.getElementById('warning').innerHTML = "Ingrese su email"
+         document.getElementById('warning').innerHTML = "Ingrese un email válido";
       });
+
 });
 
 /*-------------------------------------------------------------*/
