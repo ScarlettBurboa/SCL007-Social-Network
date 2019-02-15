@@ -55,10 +55,11 @@ export function findObjectByKey(array, key, value) {
 export const saveEditPost = (idPost, newText) => {
     const userId = firebase.auth().currentUser.uid;
     const postRef = firebase.database().ref(`postUser/${userId}/`);
+    const postReference = firebase.database().ref('post/');
     postRef.child(idPost).update({ pospublic: newText });
+    postReference.child(idPost).update({ pospublic: newText });
 };
-
-
+  
 
 
 

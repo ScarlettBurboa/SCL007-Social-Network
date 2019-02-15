@@ -111,7 +111,7 @@ const savePostFromDatabase = () => {
       <div class="col-9 question-published clearfix">
          <div class="row">
             <div class="col-12 post">
-               <p class="text-post">${post.val().pospublic}
+               <p id="nuevotexto" class="text-post">${post.val().pospublic}
                </p>
             </div>
          </div>
@@ -133,15 +133,12 @@ const savePostFromDatabase = () => {
 </div>` + document.getElementById('postPublished').innerHTML;
 
    });
-   
 };
  /**PERFIL ACTION*/
  document.getElementById('perfilUserButton').addEventListener('click', ()=>{
      document.getElementById('showPerfilTotal').style.display = "block";
      perfilNameShow();
      savePostFromDatabaseUser();
-     
-    
      
      document.getElementById('app').style.display = "none";
      document.getElementById('btnLogout').style.display = "none";
@@ -213,6 +210,7 @@ const editPostFunction = (post)=> {
  let btnSave = document.createElement('input');
  btnSave.setAttribute("type", "button");
  btnSave.setAttribute("value", "Guardar")
+ btnSave.setAttribute("class", "blablabla");
  let btnCancel = document.createElement('input');
  btnCancel.setAttribute("type", "button");
  btnCancel.setAttribute("value", "Cancelar");
@@ -224,16 +222,19 @@ const editPostFunction = (post)=> {
  boxEdit.appendChild(btnCancel);
  
  btnSave.addEventListener("click", () => {
-   let newText = textArea.value;   
+   let newText = textArea.value; //nuevo texto corresponderá al texto editado en el textarea
+   document.getElementById('nuevotexto').innerHTML = newText; // el nuevo texto lo imprimimos en la etiqueta <p>
    saveEditPost(idPost, newText);
-   savePostFromDatabaseUser();  
-   savePostFromDatabase();
+   savePostFromDatabaseUser();
  });
-
- /* btnCancel.addEventListener("click", () =>{
-
- }); */
-
+  
+ btnCancel.addEventListener("click", () =>{
+   boxEdit.removeChild(textArea);
+   boxEdit.removeChild(btnSave);
+   boxEdit.removeChild(btnCancel);
+   boxEdit.appendChild(textoPostId);
+ }); 
+ savePostFromDatabase();
 };
 /*----------------------------------------------------------------------------------------------------------------------*/
 const deleteComment = (post) => {
