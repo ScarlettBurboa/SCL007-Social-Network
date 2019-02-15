@@ -7,6 +7,7 @@ export const savePost = (userName, post, photo, datePost) => {
         pospublic: post,
         userphoto: photo,
         createdDate: datePost,
+        key: keyPost
     });
     //Se agrega dentro de la misma función savePost para que tenga la misma id del post y use la misma llave
     firebase.database().ref(`postUser/${userId}/${keyPost}/`).set({

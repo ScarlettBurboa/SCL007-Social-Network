@@ -119,11 +119,15 @@ const savePostFromDatabase = () => {
                </p>
             </div>
          </div>
-         <div class="row icon-group" style="display:none;">            
-               <div class="col-2"><button id="${createId('likePost')}" class="post-icon"><div id="${createId('like')}" class="like"></div></button></div>
-               <div class="col-2"><button id="${createId('savePost')}" class="post-icon"><i class="far fa-bookmark"></button></i></div>
-               <div class="col-2"><button id="${createId('commentPost')}" class="post-icon"><i class="far fa-comment-dots"></i></button></div>
-               <div class="col-6"><button id="${createId('ReportPost')}" class="post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
+         <div class="row icon-group">            
+               <div class="col-2"><button id="${createId('likePost')}" class="post-icon hide"><div id="${createId('like')}" class="like"></div></button></div>
+               <div class="col-2"><button id="${createId('savePost')}" class="post-icon hide"><i class="far fa-bookmark"></button></i></div>
+               <div class="col-2"><button id="${createId('commentPost')}" class="post-icon hide"><i class="far fa-comment-dots"></i></button></div>
+               <div class="col-6"><button id="mostrar" class="postReport post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
+               <span class="hidden"id="${createId('key')}">${post.val().key}</span>  
+               <dialog id="dialogo"><h5>¿Esta publicación es inapropiada y quieres denunciarla?</h5>
+               <p>Envíanos un correo y lo revisaremos</p><button id="closeDialog">Cancelar  </button>
+               <button id="closeDialog"><a href="mailto:ScarlettBurboa@gmail.com?Subject=Denunciar%20publicación%20n°%20${post.val().key}&body=Denunciar%20comentario%20n°%20">Enviar Correo</a></button></dialog>
          </div>          
       </div>
       <div class="col-9 float-right" style="display:none;">
@@ -135,9 +139,25 @@ const savePostFromDatabase = () => {
       </div>
    </div>
 </div>` + document.getElementById('postPublished').innerHTML;
+let postReport = document.getElementsByClassName('postReport');
+//reportar comentario
+for (let i=0; i < postReport.length; i++){ 
+   postReport[i].addEventListener('click', reportPostFuncion)
+}
 document.getElementById('publishedPerfil').innerHTML = " ";
    });
 };
+//Función reportar
+const reportPostFuncion = () =>{
+   let dialogo = document.getElementById('dialogo');
+   dialogo.showModal();
+   savePostFromDatabaseUser(); 
+   document.getElementById('closeDialog').addEventListener('click', function(){
+   dialogo.close();
+   savePostFromDatabaseUser(); 
+      })
+};
+
  /**PERFIL ACTION*/
  document.getElementById('perfilUserButton').addEventListener('click', ()=>{
      document.getElementById('showPerfilTotal').style.display = "block";
