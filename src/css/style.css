@@ -508,3 +508,9 @@ textarea.answer::placeholder{
       text-decoration: none;
       color: #000;
   }   
+#warning{
+ text-align: center;
+ margin-top: 20px;
+ color: red;
+ font-weight: bold;
+}

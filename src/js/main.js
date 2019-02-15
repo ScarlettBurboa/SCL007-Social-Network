@@ -65,8 +65,9 @@ document.getElementById("resetPassword").addEventListener("click", () => {
       .then(function () {
          document.getElementById('warning').innerHTML = "Revisa tu email para cambiar tu contraseña"
       }).catch(error => {
-         document.getElementById('warning').innerHTML = "Ingrese su email"
+         document.getElementById('warning').innerHTML = "Ingrese un email válido";
       });
+
 });
 
 /*-------------------------------------------------------------*/
@@ -125,7 +126,7 @@ const savePostFromDatabase = () => {
                <div class="col-6"><button id="mostrar" class="postReport post-icon float-right"><i class="fas fa-exclamation"></i></button></div>
                <span class="hidden"id="${createId('key')}">${post.val().key}</span>  
                <dialog id="dialogo"><h5>¿Esta publicación es inapropiada y quieres denunciarla?</h5>
-               <p>Envíanos un correo copiando el numero de publicación <b>${post.val().key}</b> y lo revisaremos</p><button id="closeDialog">Cancelar</button>
+               <p>Envíanos un correo copiando el numero de publicación <b>-LYm01WhDdKmteY-Sknx</b> y lo revisaremos</p><button id="closeDialog">Cancelar</button>
                <button id="closeDialog"><a href="mailto:scarlettBurboa@gmail.com?Subject=Denunciar%20publicación%20n°%20">Enviar Correo</a></button></dialog>
          </div>          
       </div>
