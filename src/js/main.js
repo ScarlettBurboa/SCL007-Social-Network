@@ -103,7 +103,6 @@ let createId = (function() {
     }
 })();
 const savePostFromDatabase = () => {
-   document.getElementById('publishedPerfil').innerHTML = " ";
      readPost((post)=>{
     document.getElementById('postPublished').innerHTML = 
     `<div class="row space">
